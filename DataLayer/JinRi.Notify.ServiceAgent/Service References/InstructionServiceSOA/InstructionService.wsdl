@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InstructionService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" />
+      <xsd:import schemaLocation="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.Model" />
+      <xsd:import schemaLocation="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IInstructionService_RegisterServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterServer" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_RegisterServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_HeartBeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:HeartBeat" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_HeartBeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HeartBeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_CreateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTask" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_CreateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_GetTaskMessageList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskMessageList" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_GetTaskMessageList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskMessageListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_GetAllServers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllServers" />
+  </wsdl:message>
+  <wsdl:message name="IInstructionService_GetAllServers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllServersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IInstructionService">
+    <wsdl:operation name="RegisterServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInstructionService/RegisterServer" message="tns:IInstructionService_RegisterServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInstructionService/RegisterServerResponse" message="tns:IInstructionService_RegisterServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInstructionService/HeartBeat" message="tns:IInstructionService_HeartBeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInstructionService/HeartBeatResponse" message="tns:IInstructionService_HeartBeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInstructionService/CreateTask" message="tns:IInstructionService_CreateTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInstructionService/CreateTaskResponse" message="tns:IInstructionService_CreateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskMessageList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInstructionService/GetTaskMessageList" message="tns:IInstructionService_GetTaskMessageList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInstructionService/GetTaskMessageListResponse" message="tns:IInstructionService_GetTaskMessageList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInstructionService/GetAllServers" message="tns:IInstructionService_GetAllServers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInstructionService/GetAllServersResponse" message="tns:IInstructionService_GetAllServers_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IInstructionService" type="tns:IInstructionService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RegisterServer">
+      <soap:operation soapAction="http://tempuri.org/IInstructionService/RegisterServer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HeartBeat">
+      <soap:operation soapAction="http://tempuri.org/IInstructionService/HeartBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://tempuri.org/IInstructionService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskMessageList">
+      <soap:operation soapAction="http://tempuri.org/IInstructionService/GetTaskMessageList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllServers">
+      <soap:operation soapAction="http://tempuri.org/IInstructionService/GetAllServers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InstructionService">
+    <wsdl:port name="BasicHttpBinding_IInstructionService" binding="tns:BasicHttpBinding_IInstructionService">
+      <soap:address location="http://192.168.6.113:8105/InstructionService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

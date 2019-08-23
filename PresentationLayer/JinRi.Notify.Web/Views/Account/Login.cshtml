@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "登录 - 消息通知中心";
+}
+
+@section Style {
+    <link href="@Url.Content("~/Content/css/login.css")" rel="stylesheet" type="text/css" /> 
+    <link href="@Url.Content("~/Content/css/reset.css")" rel="stylesheet" type="text/css" /> 
+}
+
+<div class="m-main">
+    @using (Html.BeginForm())
+    {
+        <div class="m-main">
+
+            <p class="u-subTitle">消息通知中心</p>
+            <div class="m-loginArea">
+                @if (ViewData["result"] != null)
+                {
+                    <!--三种错误提示-->
+                    <span class="errorNote"><span class="icon"></span>@ViewData["result"] </span>
+                    <!---->
+                }
+                <p class="m-user">
+                    <span class="userIcon"></span>
+                    <input type="text" class="u-ipt error" name="username" /><!-- 用户名或密码错误时 在 这里 加  个error 的类名 正确就去掉 error类名 -->
+                </p>
+                <p class="m-pwd">
+                    <span class="pwdIcon"></span>
+                    <input type="password" class="u-ipt" name="password" />
+                </p>
+                <button class="u-btn u-btn-login" type="submit">立即登录</button>
+            </div>
+            <div class="foot">
+                <p class="u-copyright">Copyright © 2015 上海古尚信息技术有限公司 All Rights Reserved</p>
+            </div>
+
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    if (window.parent && window.parent.frames.length > 0) {
+        window.parent.location = document.location;
+        //window.parent.document.body.innerHTML = document.body.innerHTML;
+    }
+</script>

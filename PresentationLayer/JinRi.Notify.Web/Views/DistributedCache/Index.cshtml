@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "缓存清理";
+    
+}
+@using System.Text.RegularExpressions;
+
+@helper RenderArgs(string key) { 
+    if (string.IsNullOrEmpty(key))
+    {
+        @:""; 
+        return;
+    }
+    var strArr = key.Split('_');
+    int count = strArr.Where(t => Regex.IsMatch(t, @"\{\d\}")).Count();
+    for (int i = 0; i < count; i++)
+    {
+        @:<input type="text" name="args" class="input" style="width:80px;" />
+    }
+}
+@section Script {
+    <script type="text/javascript">
+        var DistributedCache = {};
+        //查看
+        DistributedCache.lookup = function (sender) {
+            var tr = $(sender).closest("tr");
+            var data = DistributedCache.getParams(tr);
+            $.post("/DistributedCache/Lookup", data, function (r) {
+                tr.find("td:eq(2)").html(r);
+            });
+        }
+
+        //删除
+        DistributedCache.delete = function (sender) {
+            $.messager.confirm("系统提示", "确认删除?", function (r) {
+                if (r) {
+                    var tr = $(sender).closest("tr");
+                    var data = DistributedCache.getParams(tr);
+                    $.post("/DistributedCache/Delete", data, function (r) {
+                        if (r.Success) {
+                            $.messager.alert("系统提示", "删除成功!", "info");
+                            tr.find("td:eq(2)").html(r.Msg);
+                        } else {
+                            $.messager.alert("系统提示", "删除失败!", "info");
+                        }
+                        
+                    }, "json");
+                }
+            });
+        }
+
+        //获取参数
+        DistributedCache.getParams = function (target) {
+            var args = [];
+            var inputs = target.find("input");
+            $.each(inputs, function (index, item) {
+                var arg = $(item).val();
+                if (arg) {
+                    args.push(arg);
+                }
+            });
+            var data = {
+                cacheKey: target.find("td:eq(0)").html(),
+                args: args.toString()
+            };
+            return data
+        }
+
+        $(function () {
+            $("#btnSearch").click(function () {
+                location.href = "/DistributedCache/Index?Key=" + $("#Key").val();
+            });
+        });
+    </script>    
+}
+<table class="tLine" style="width:90%; margin-bottom: 2px;">
+    <tr>
+        <td colspan="2">
+            Key: <input type="text" id="Key" name="Key" class="input" style="width:150px;" />
+            <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+        </td>
+    </tr>
+</table>
+<table class="tLine" style="width:90%">
+    <thead>
+        <tr>
+            <td class="label" style="width: 150px;">键</td>
+            <td class="label" style="width:100px;">Args</td>
+            <td class="label" style="width:500px;">值</td>
+            <td class="label" style="width:100px;">操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.AllCache as IEnumerable<KeyValuePair<string,string>>)
+        {
+            <tr>
+                <td>@item.Key</td>
+                <td style="width: 300px;">
+                    @RenderArgs(item.Key)
+                </td>
+                <td>
+                    @item.Value
+                </td>
+                <td>
+                    <a href="javascript:void(0);" onclick="DistributedCache.lookup(this);" >查看</a>&nbsp;
+                    <a href="javascript:void(0);" onclick="DistributedCache.delete(this);">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

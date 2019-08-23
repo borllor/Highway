@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.Model" />
+  <xs:complexType name="NotifyMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClientIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MessageId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageKey" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JinRi.Notify.Model" minOccurs="0" name="MessagePriority" type="q1:MessagePriorityEnum" />
+      <xs:element minOccurs="0" name="MessageType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NotifyData" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceFrom" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NotifyMessage" nillable="true" type="tns:NotifyMessage" />
+  <xs:complexType name="NotifyMessageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MessageId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotifyMessageResult" nillable="true" type="tns:NotifyMessageResult" />
+  <xs:complexType name="BaseResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrMsg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseResult" nillable="true" type="tns:BaseResult" />
+  <xs:complexType name="PushCallbackResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PushCallbackResult" nillable="true" type="tns:PushCallbackResult" />
+  <xs:complexType name="PushMessageResult">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="PushId" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/JinRi.Notify.Model" minOccurs="0" name="PushStatus" type="q2:PushResultEnum" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PushMessageResult" nillable="true" type="tns:PushMessageResult" />
+  <xs:complexType name="ArrayOfNotifyMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NotifyMessage" nillable="true" type="tns:NotifyMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNotifyMessage" nillable="true" type="tns:ArrayOfNotifyMessage" />
+</xs:schema>

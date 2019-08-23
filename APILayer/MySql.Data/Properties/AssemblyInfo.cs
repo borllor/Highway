@@ -1,0 +1,36 @@
+﻿using System;
+using System.Diagnostics;
+using System.Reflection;
+using System.Resources;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using System.Security;
+
+[assembly: InternalsVisibleTo("MySql.Data.Entity.EF6, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: InternalsVisibleTo("MySql.Data.RT.Tests, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: InternalsVisibleTo("MySql.Data.CF.Tests, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: InternalsVisibleTo("MySql.Data.Entity.EF5, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: InternalsVisibleTo("MySql.Data.Entity, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: InternalsVisibleTo("MySql.Fabric.Plugin, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: Debuggable(DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints)]
+[assembly: CompilationRelaxations(8)]
+[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
+[assembly: AssemblyInformationalVersion("6.9.7")]
+[assembly: NeutralResourcesLanguage("")]
+[assembly: AssemblyDescription("ADO.Net driver for MySQL")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Oracle")]
+[assembly: AssemblyProduct("")]
+[assembly: AssemblyCopyright("Copyright \x00a9 2004, 2015, Oracle and/or its affiliates. All rights reserved.")]
+[assembly: AssemblyTrademark("")]
+[assembly: ComVisible(false)]
+[assembly: CLSCompliant(false)]
+[assembly: AssemblyTitle("MySql.Data.dll")]
+[assembly: AllowPartiallyTrustedCallers]
+[assembly: SecurityRules(SecurityRuleSet.Level1)]
+[assembly: Guid("7c34603a-43ca-48ad-bc19-54eba1e8620c")]
+[assembly: AssemblyKeyName("ConnectorNet")]
+[assembly: InternalsVisibleTo("MySql.Data.Tests, PublicKey = 0024000004800000940000000602000000240000525341310004000001000100d973bda91f71752c78294126974a41a08643168271f65fc0fb3cd45f658da01fbca75ac74067d18e7afbf1467d7a519ce0248b13719717281bb4ddd4ecd71a580dfe0912dfc3690b1d24c7e1975bf7eed90e4ab14e10501eedf763bff8ac204f955c9c15c2cf4ebf6563d8320b6ea8d1ea3807623141f4b81ae30a6c886b3ee1")]
+[assembly: AssemblyVersionAttribute("6.7.4.0")]
+[assembly: AssemblyFileVersionAttribute("6.7.4")]

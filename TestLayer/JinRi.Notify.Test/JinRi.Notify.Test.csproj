@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Notify.Test</RootNamespace>
+    <AssemblyName>JinRi.Notify.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="TestCheck.cs" />
+    <Compile Include="TestJinRiNotifyQuery.cs" />
+    <Compile Include="TestRabbitMQ.cs" />
+    <Compile Include="TestProgram.cs" />
+    <Compile Include="TestRedis.cs" />
+    <Compile Include="TestSender.cs" />
+    <Compile Include="ServiceAgentTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestTransactionScope.cs" />
+    <Compile Include="UnitJinRiNotifyFacade.cs" />
+    <Compile Include="TestRabbitMQWays.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configs\AppSetting.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configs\Database.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configs\JinRi.App.Framework.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configs\Log4Net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\JinRi.App\JinRi.App.Framework\JinRi.App.Framework.Net40.Thrift.csproj">
+      <Project>{90d6c981-e555-49c5-96ff-39cfd32316a8}</Project>
+      <Name>JinRi.App.Framework.Net40.Thrift</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APILayer\EasyNetQ\EasyNetQ.csproj">
+      <Project>{b8def709-5168-48f1-b8d3-ad44e4a4a22b}</Project>
+      <Name>EasyNetQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APILayer\MySql.Data\MySql.Data.csproj">
+      <Project>{47266636-a5cd-481a-a6d5-0ce5065a3385}</Project>
+      <Name>MySql.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLayer\JinRi.Notify.Business\JinRi.Notify.Business.csproj">
+      <Project>{1344941c-f3a1-490e-9ae2-fdf4e458950b}</Project>
+      <Name>JinRi.Notify.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLayer\JinRi.Notify.Utility\JinRi.Notify.Utility.csproj">
+      <Project>{f3ee215a-2351-4fc7-a8cc-1159211740e9}</Project>
+      <Name>JinRi.Notify.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLayer\JinRi.Notify.DB\JinRi.Notify.DB.csproj">
+      <Project>{afe1bbb5-34b0-485a-a77f-b26ea0793e65}</Project>
+      <Name>JinRi.Notify.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLayer\JinRi.Notify.ServiceAgent\JinRi.Notify.ServiceAgent.csproj">
+      <Project>{dcffb632-bc7c-4757-b078-5a15ae88fe1b}</Project>
+      <Name>JinRi.Notify.ServiceAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.DTO\JinRi.Notify.DTO.csproj">
+      <Project>{4c14cc1f-b1eb-4f62-bde2-089e144c95ae}</Project>
+      <Name>JinRi.Notify.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.Entity\JinRi.Notify.Entity.csproj">
+      <Project>{2c23c782-94c1-409b-8fb1-b61f3730f95f}</Project>
+      <Name>JinRi.Notify.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.Model\JinRi.Notify.Model.csproj">
+      <Project>{0f457a6d-f6a5-4543-b019-a18cdd79673e}</Project>
+      <Name>JinRi.Notify.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.ServiceModel\JinRi.Notify.ServiceModel.csproj">
+      <Project>{7396079d-a1ca-44e3-8d18-aa0bc52c43f1}</Project>
+      <Name>JinRi.Notify.ServiceModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Include="Configs\ServiceModel.Behaviors.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\ServiceModel.Bindings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\ServiceModel.Client.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "消息类型";
+}
+
+@section Script {
+    <script type="text/javascript">
+        var MessageType = {};
+
+        //编辑
+        MessageType.edit = function (rowIndex) {
+            var row = $("#dg").datagrid("getRows")[rowIndex];
+            row.MessageType = row.MessageTypeName;
+            row.MessagePriority = row.MessagePriorityName;
+            $("#frmAddMessageType").form("load", row);
+            //console.log(row);
+            $("#OptType").val("4");
+            $("#MessageTypeId").val(row.MessageTypeId);
+            $("#winAddMessageType").show().dialog({ title: "修改配置", top: 50 }).dialog("open");
+        }
+
+        //保存配置
+        MessageType.save = function () {
+            $("#frmAddMessageType").form("submit", {
+                url: "/NotifyMessageType/Save",
+                onSubmit: function (param) {
+                    return $(this).form("validate");
+                },
+                success: function (data) {
+                    var r = eval('(' + data + ')');
+                    if (r.Success) {
+                        $.messager.alert("系统提示", "操作成功", "info");
+                        $("#winAddMessageType").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", r.Msg, "info");
+                    }
+                }
+            });
+        }
+        //删除
+        MessageType.delete = function (rowIndex) {
+            $.messager.confirm("系统提示", "确认删除?", function (r) {
+                if (r) {
+                    var row = $("#dg").datagrid("getRows")[rowIndex];
+                    $("#OptType").val("3");
+                    $.post("/NotifyMessageType/Save", { OptType: $("#OptType").val(), MessageTypeId: row.MessageTypeId }, function (r) {
+                        if (r.Success) {
+                            $.messager.alert("系统提示", "操作成功", "info");
+                            $("#winAddMessageType").dialog("close");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", r.Msg, "info");
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(function () {
+            $("#btnSearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#dg").datagrid({
+                url: "/NotifyMessageType/List",
+                rownumbers: true,
+                striped: true,
+                singleSelect: true,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: "MessageTypeName", title: "消息类型", align: "left", width: 150 },
+                    { field: "Remark", title: "消息类型名称", align: "left", width: 150 },
+                    { field: "MessagePriorityName", title: "消息优先级", align: "left", width: 100 },
+                    {
+                        field: "Status", title: "状态", align: "center", width: 120, formatter: function (value) {
+                            switch (value) {
+                                case 2:
+                                    return "正常";
+                                default:
+                                    return "无效";
+                            }
+                        }
+                    },
+                    { field: "CreateTime", title: "创建时间", align: "center", width: 150 },
+                    {
+                        field: "opt", title: "操作", align: "center", width: 120, formatter: function (value, row, index) {
+                            var a = '<a href="javascript:void(0);" onclick="MessageType.edit(' + index + ')">编辑</a>&nbsp;';
+                            var b = '<a href="javascript:void(0);" onclick="MessageType.delete(' + index + ')">删除</a>';
+                            if (row.Status == 2) {
+                                return a + b;
+                            }
+                            return "";
+                        }
+                    }
+                ]]
+            });
+
+            //新增配置
+            $("#btnAdd").click(function () {
+                $("#frmAddMessageType").form("clear");
+                $("#OptType").val("2");
+                $("#winAddMessageType").show().dialog({ title: "新增消息类型", top: 50 }).dialog("open");
+            });
+
+            //新增配置保存
+            $("#btnOK").click(MessageType.save);
+
+        });
+    </script>
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td colspan="4">
+                    <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+                    <a class="easyui-linkbutton" iconcls="icon-add" id="btnAdd" plain="true">添加</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--消息类型新增-->
+<div id="winAddMessageType" style="width: 620px; height: auto; text-align: left; display: none; padding: 2px;"
+     class="easyui-window" modal="true" closed="true" minimizable="false" collapsible="false" maximizable="false">
+    <form id="frmAddMessageType" action="" method="post">
+        <input type="hidden" id="OptType" name="OptType" value="2">
+        <input type="hidden" id="MessageTypeId" name="MessageTypeId" value="0">
+        <table class="tLine" style="width:100%">
+            <tr>
+                <td class="label">消息类型：</td>
+                <td><input type="text" name="MessageTypeName" class="easyui-validatebox input" data-options="required:true" /></td>
+                <td class="label">消息类型名称：</td>
+                <td><input type="text" name="Remark" class="easyui-validatebox input" data-options="required:true" /></td>
+            </tr>
+            <tr>
+                <td class="label">消息优先级：</td>
+                <td>
+                    <select name="MessagePriority" class="easyui-combobox input" data-options="required:true,editable:false">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.MessagePriorityEnum)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td class="label"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right" style="text-align: right; margin-right: 10px">
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-save" plain="true" id="btnOK">确定</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" id="btnClose" iconcls="icon-cancel" plain="true" onclick="$('#winAddMessageType').dialog('close');">取消</a>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>

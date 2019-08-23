@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0F457A6D-F6A5-4543-B019-A18CDD79673E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Notify.Model</RootNamespace>
+    <AssemblyName>JinRi.Notify.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MvcPaging">
+      <HintPath>..\..\ReferenceDll\MvcPaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ReturnMessage.cs" />
+    <Compile Include="Common\TaskMessageModel.cs" />
+    <Compile Include="Common\WebUserModel.cs" />
+    <Compile Include="Enum\MessagePriorityEnum.cs" />
+    <Compile Include="Enum\MessageTypeEnum.cs" />
+    <Compile Include="Enum\PushStatusEnum.cs" />
+    <Compile Include="Enum\PushResultEnum.cs" />
+    <Compile Include="Enum\BeatResultEnum.cs" />
+    <Compile Include="Enum\TaskMessageStatusEnum.cs" />
+    <Compile Include="Enum\TaskTypeEnum.cs" />
+    <Compile Include="JinRiDB\NotifyOrderModel.cs" />
+    <Compile Include="JinRiNotify\NotifyInterfaceSettingModel.cs" />
+    <Compile Include="JinRiNotify\NotifyMessageModel.cs" />
+    <Compile Include="JinRiNotify\NotifyMessageTypeModel.cs" />
+    <Compile Include="JinRiNotify\NotifySettingModel.cs" />
+    <Compile Include="JinRiNotify\PushMessageModel.cs" />
+    <Compile Include="JinRiNotify\StatisticPushMessageModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JinRi.Notify.Entity\JinRi.Notify.Entity.csproj">
+      <Project>{2c23c782-94c1-409b-8fb1-b61f3730f95f}</Project>
+      <Name>JinRi.Notify.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

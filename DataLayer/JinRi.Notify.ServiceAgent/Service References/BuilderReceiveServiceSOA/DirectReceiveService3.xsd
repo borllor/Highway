@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" />
+  <xs:element name="Receive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" minOccurs="0" name="message" nillable="true" type="q1:NotifyMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" minOccurs="0" name="ReceiveResult" nillable="true" type="q2:NotifyMessageResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" minOccurs="0" name="array" nillable="true" type="q3:ArrayOfNotifyMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiveListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" minOccurs="0" name="ReceiveListResult" nillable="true" type="q4:NotifyMessageResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

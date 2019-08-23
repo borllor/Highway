@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFEEFDEB-1A1B-43AE-9A54-5BC30A16DF05}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Notify.Data</RootNamespace>
+    <AssemblyName>JinRi.Notify.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionString.cs" />
+    <Compile Include="ProcessLog\ProcessLogCMD.cs" />
+    <Compile Include="ProcessLog\ProcessLogFacade.cs" />
+    <Compile Include="ProcessLog\ProcessLogQuery.cs" />
+    <Compile Include="JinRiNotify\JinRiNotifyFacade.cs" />
+    <Compile Include="JinRiNotify\JinRiNotifyQuery.cs" />
+    <Compile Include="JinRiNotify\JinRiNotifyCMD.cs" />
+    <Compile Include="HandleLog\HandleLogCMD.cs" />
+    <Compile Include="HandleLog\HandleLogFacade.cs" />
+    <Compile Include="HandleLog\HandleLogQuery.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\JinRi.App\JinRi.App.Framework\JinRi.App.Framework.Net40.csproj">
+      <Project>{fb5efdfa-da26-491f-89a0-d4fac48bac8b}</Project>
+      <Name>JinRi.App.Framework.Net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APILayer\dapper-dot-net-master\Dapper NET45\Dapper NET45.csproj">
+      <Project>{0fff5bc7-0a4b-4d87-835e-4fad70937507}</Project>
+      <Name>Dapper NET45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.Entity\JinRi.Notify.Entity.csproj">
+      <Project>{2c23c782-94c1-409b-8fb1-b61f3730f95f}</Project>
+      <Name>JinRi.Notify.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

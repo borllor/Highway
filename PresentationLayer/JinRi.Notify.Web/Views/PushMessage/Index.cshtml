@@ -1,0 +1,261 @@
+﻿@{
+    ViewBag.Title = "推送消息";
+}
+
+@section Script {
+    <script type="text/javascript">
+        var Urls = {
+            list: "/PushMessage/List",
+            historyList: "/PushMessage/HistoryList"
+        };
+        var PushMessage = {};
+        //编辑
+        PushMessage.edit = function (rowIndex) {
+            $("#frmEdit").form("clear");
+            $("#dg").datagrid("unselectAll").datagrid("selectRow", rowIndex);
+            var row = $("#dg").datagrid("getRows")[rowIndex];
+            row.MessageType = row.MessageTypeEName;
+            row.MessagePriority = row.MessagePriorityName;
+            row.PushStatus = row.PushStatusName;
+            $("#PushId").val(row.PushId);
+            $("#frmEdit").form("load", row);
+            var batchIndex = $("#trBatch").index("#frmEdit table.tLine tr");
+            $("#frmEdit table.tLine").find("tr:lt(" + batchIndex + ")").show();
+            $("#winEdit").show().dialog({ title: "修改推送数据", top: 50 }).dialog("open");
+        }
+
+        //批量编辑
+        PushMessage.batchEdit = function () {
+            $("#frmEdit").form("clear");
+            var rows = $("#dg").datagrid("getChecked");
+            if (rows.length == 0) {
+                $.messager.alert("系统提示", "请选择需要修改的记录!", "info");
+                return false;
+            }
+            var row = $("#dg").datagrid("getRows")[0];
+            $("#frmEdit").form("load", row);
+            var pushIds = [];
+            $.each(rows, function (index, value) {
+                pushIds.push(value.PushId);
+            });
+            $("#PushIds").val(pushIds.toString());
+            var batchIndex = $("#trBatch").index("#frmEdit table.tLine tr");
+            $("#frmEdit table.tLine").find("tr:lt(" + batchIndex + ")").hide();
+            $("#winEdit").show().dialog({ title: "批量修改推送数据", top: 50 }).dialog("open");
+        }
+
+        //保存
+        PushMessage.save = function () {
+            $("#frmEdit").form("submit", {
+                url: "/PushMessage/Save",
+                onSubmit: function (param) {
+                    return $(this).form("validate");
+                },
+                success: function (data) {
+                    var r = eval('(' + data + ')');
+                    if (r.Success) {
+                        $.messager.alert("系统提示", "操作成功", "info");
+                        $("#winEdit").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", r.Msg, "info");
+                    }
+                }
+            });
+        }
+
+        //查看配置信息
+        PushMessage.setting = function (settingId) {
+            var url = "/NotifyInterfaceSetting/Index?settingId=" + settingId;
+            parent.addTab("配置信息" + settingId, url);
+        }
+
+        $(function () {
+
+            $("#btnSearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('options').url = Urls.list;
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#btnHistorySearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('options').url = Urls.historyList;
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#dg").datagrid({
+                url: Urls.list,
+                rownumbers: true,
+                striped: true,
+                singleSelect: false,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: "ck", checkbox: true },
+                    { field: "PushId", title: "PushId", align: "center", width: 130 },
+                    { field: "MessageId", title: "消息ID", align: "center", width: 130 },
+                    { field: "MessageKey", title: "消息Key", align: "center", width: 130 },
+                    { field: "MessagePriorityName", title: "消息优先级", align: "center", width: 80 },
+                    { field: "MessageTypeCName", title: "消息类型", align: "center", width: 80 },
+                    {
+                        field: "PushData", title: "通知数据", align: "center", width: 120, formatter: function (value, row, index) {
+                            return Log.tooltip(value);
+                        }
+                    },
+                    { field: "PushStatusName", title: "推送状态", align: "center", width: 80 },
+                    { field: "CostTime", title: "耗时(s)", align: "center", width: 60 },
+                    { field: "NextPushTime", title: "下次推送时间", align: "center", width: 150 },
+                    { field: "PushCount", title: "推送次数", align: "center", width: 70 },
+                    {
+                        field: "Memo", title: "推送结果", align: "center", width: 200, formatter: function (value, row, index) {
+                            return Log.tooltip(value);
+                        }
+                    },
+                    {
+                        field: "opt", title: "操作", align: "center", width: 110, formatter: function (value, row, index) {
+                            if ($("#dg").datagrid('options').url == Urls.historyList) return "";
+                            var a = '<a href="javascript:void(0);" onclick="PushMessage.edit(' + index + ')">编辑</a>&nbsp;';
+                            var b = '<a href="javascript:void(0);" onclick="PushMessage.setting(' + row.SettingId + ')">配置</a>&nbsp;';
+                            if (row.Status != 2) {
+                                return a + b;
+                            }
+                            return b;
+                        }
+                    }
+                ]],
+                onClickCell: function (index, field, value) {
+                    if (field == "PushData" || field == "Memo") {
+                        Log.openContentWindow(value);
+                    }
+                },
+                onLoadSuccess: function () {
+                    $("a.tip").each(function (i, item) {
+                        $(this).tooltip({
+                            position: 'bottom',
+                            content: '<textarea style="width: 500px;height: 360px;overflow-y:hidden;" class="input">' + $(this).html() + '</textarea>'
+                        });
+                    });
+                    if ($("#dg").datagrid('options').url == Urls.historyList) {
+                        $("#btnBatchEdit").hide();
+                    }
+                    else {
+                        $("#btnBatchEdit").show();
+                    }
+                }
+            });
+
+            $("#btnOK").click(PushMessage.save);
+            $("#btnBatchEdit").click(PushMessage.batchEdit);
+
+        });
+    </script>
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td colspan="4">
+                    PushId：<input type="text" name="PushId" class="input" style="width:120px;" />
+                    消息ID：<input type="text" name="MessageId" class="input" style="width:120px;" />
+                    消息Key：<input type="text" name="MessageKey" class="input" style="width:120px;" />
+                    消息类型：<select name="MessageType" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in ViewBag.NotifyMessageTypeList as List<JinRi.Notify.Model.NotifyMessageTypeModel>)
+                        {
+                            <option value="@item.MessageType">@item.Remark</option>
+                        }
+                    </select>
+                    消息优先级：<select name="MessagePriority" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.MessagePriorityEnum)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    推送状态：<select name="PushStatus" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.PushStatusEnum)))
+                        {
+                            <option value="@Convert.ToInt32(Enum.Parse(typeof(JinRi.Notify.Model.PushStatusEnum), item))">@item</option>
+                        }
+                    </select>
+
+                    <div style="margin-top:2px;">
+                        推送时间：<input type="text" name="SNextPushTime" class="easyui-datetimebox" style="width:150px;" /> -
+                        <input type="text" name="ENextPushTime" class="easyui-datetimebox" style="width:150px;" />
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnHistorySearch" plain="true">历史查询</a>
+                        <a class="easyui-linkbutton" iconcls="icon-ok" id="btnBatchEdit" plain="true">批量修改</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--编辑-->
+<div id="winEdit" style="width: 620px; height: auto; text-align: left; display: none; padding: 2px;"
+     class="easyui-window" modal="true" closed="true" minimizable="false" collapsible="false" maximizable="false">
+    <form id="frmEdit" action="" method="post">
+        <input type="hidden" id="PushId" name="PushId">
+        <input type="hidden" id="PushIds" name="PushIds">
+        <table class="tLine" style="width:100%">
+            <tr>
+                <td class="label">消息优先级：</td>
+                <td>
+                    <select name="MessagePriority" class="easyui-combobox input">
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.MessagePriorityEnum)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+                <td class="label">消息类型：</td>
+                <td>
+                    <select id="MessageType" name="MessageType" class="easyui-combobox input" data-options="required:true,editable:false">
+                        @foreach (var item in ViewBag.NotifyMessageTypeList as List<JinRi.Notify.Model.NotifyMessageTypeModel>)
+                        {
+                            <option value="@item.MessageType">@item.Remark</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">通知数据：</td>
+                <td><input type="text" name="PushData" class="easyui-validatebox input" data-options="required:true" /></td>
+                <td class="label">推送状态：</td>
+                <td>
+                    <select id="PushStatus" name="PushStatus" class="easyui-combobox input" data-options="required:true,editable:false">
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.PushStatusEnum)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr id="trBatch">
+                <td class="label">下次推送时间：</td>
+                <td><input type="text" name="NextPushTime" class="easyui-datetimebox input" data-options="required:true" style="width:150px;" /></td>
+                <td class="label">推送次数：</td>
+                <td>
+                    <input type="text" name="PushCount" class="easyui-validatebox input" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right" style="text-align: right; margin-right: 10px">
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-save" plain="true" id="btnOK">确定</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" id="btnClose" iconcls="icon-cancel" plain="true" onclick="$('#winEdit').dialog('close');">取消</a>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+<!--日志-->
+@{ Html.RenderPartial("~/Views/Shared/_Log.cshtml"); }

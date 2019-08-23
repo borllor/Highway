@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="JinRi.Notify.ReceiverService.ReceiveService" CodeBehind="ReceiveService.svc.cs" %>

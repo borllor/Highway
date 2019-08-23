@@ -1,0 +1,20 @@
+﻿<script type="text/javascript">
+    var Log = {};
+    //提示
+    Log.tooltip = function (value) {
+        var content = decodeURIComponent(value).replace(/\+/g, " ");
+        var url = '<a class="tip" href="javascript:void(0);" >' + content + '</a>&nbsp;';
+        return value ? url : "";
+    }
+    //日志窗体
+    Log.openContentWindow = function (content) {
+        $("#txtContent").val(decodeURIComponent(content.replace(/\+/g, " ").replace(/\\r\\n/, "<br />").replace(/'/g, '"')));
+        $("#winContent").show().dialog({ title: "日志内容", top: 100 }).dialog("open");
+    }
+</script>
+
+<!--内容-->
+<div id="winContent" style="width: 720px; height: 480px; text-align: left; display: none; padding: 2px;"
+     class="easyui-window" modal="true" closed="true" minimizable="false" collapsible="false" maximizable="false">
+    <textarea id="txtContent" rows="26" style="width: 99%; overflow-x: hidden; border: 1px solid #95B8E7;"></textarea>
+</div>

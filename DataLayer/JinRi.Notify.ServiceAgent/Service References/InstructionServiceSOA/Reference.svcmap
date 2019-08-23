@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ee148e77-5aa6-44c5-a668-a67ddad99634" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.6.113:8105/InstructionService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InstructionService4.xsd" MetadataType="Schema" ID="6cc5aeed-62f3-41ee-a043-9fb96ff2b7ab" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd4" />
+    <MetadataFile FileName="InstructionService.disco" MetadataType="Disco" ID="57713ef4-0f66-45bf-806c-e24881186f7b" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?disco" />
+    <MetadataFile FileName="InstructionService.xsd" MetadataType="Schema" ID="bc96f903-8145-4a7c-8de6-b3d03ca87c01" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="InstructionService.wsdl" MetadataType="Wsdl" ID="f35df7bf-dc7e-470e-9b18-c93062820b29" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?wsdl" />
+    <MetadataFile FileName="InstructionService1.xsd" MetadataType="Schema" ID="ae6d19ef-c849-4661-96b7-bf4fc13b6ab9" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd3" />
+    <MetadataFile FileName="InstructionService2.xsd" MetadataType="Schema" ID="eacd36fb-023e-42bc-9a0c-9cb6b23fff5c" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="InstructionService3.xsd" MetadataType="Schema" ID="26b05851-86c8-4020-933a-9fbf30617837" SourceId="1" SourceUrl="http://192.168.6.113:8105/InstructionService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,219 @@
+﻿@{
+    ViewBag.Title = "订单补扫";
+}
+@section Script {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSearch").click(function () {
+                if (!$("#StartTime").datetimebox("getValue"))
+                {
+                    $.messager.alert("系统提示", "请选择开始时间");
+                    return;
+                }
+                if (!$("#EndTime").datetimebox("getValue")) {
+                    $.messager.alert("系统提示", "请选择结束时间");
+                    return;
+                }
+                if (!$("#Status").combobox("getValue")) {
+                    $.messager.alert("系统提示", "请选择订单状态");
+                    return;
+                }
+                if (new Date($("#EndTime").datetimebox("getValue")) - new Date($("#StartTime").datetimebox("getValue")) > 7200000)
+                {
+                    $.messager.alert("系统提示", "只允许查询2小时内的订单");
+                    return;
+                }
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#btnAdd").click(function () {
+                batchSend();
+            });
+
+            $("#dg").datagrid({
+                url: "/DifferentShow/OrderList",
+                rownumbers: true,
+                striped: true,
+                singleSelect: false,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: 'ck', checkbox: true },
+                    { field: "OrderNo", title: "订单号", align: "center", width: 160 },
+                    { field: "OrderStatus", title: "订单状态", align: "center", width: 80 },
+                    { field: "OutTime", title: "查询时间", align: "center", width: 200 },
+                    { field: "SalesmanID", title: "经销商ID", align: "center", width: 140 },
+                    { field: "ProviderID", title: "供应商ID", align: "center", width: 140 },
+                    { field: "ProxyerID", title: "采购商ID", align: "center", width: 140 },
+                    {
+                      field: "opt", title: OutPutHtml_Select, align: "center", width: 140, formatter: function (value, row, index) {
+                          var a = '<a href="javascript:void(0);" onclick="send(' + index + ')">发送</a>&nbsp;';
+                          return a;
+                      }
+                    }
+                ]],
+                 onLoadSuccess: function () {
+                    $("a.tip").each(function (i, item) {
+                        $(this).tooltip({
+                            position: 'bottom',
+                            content: '<textarea style="width: 500px;height: 360px;overflow-y:hidden;" class="input">' + $(this).html() + '</textarea>'
+                        });
+                    });
+                }
+            });
+
+        });
+
+        function OutPutHtml_Select()
+        {
+            var select = "<select id='messageTypeSel' >"
+            var arr = [
+                { value: "", text: "--请选择--" },
+                { value: "OrderTicketOut", text: "订单出票" },
+                { value: "OrderPayResult", text: "支付通知" },
+                { value: "OrderReturnResult", text: "退票通知" },
+                { value: "NotifyZBNTicketOut", text: "订单暂不能出" },
+                { value: "OrderCancel", text: "订单取消" },
+                { value: "OrderCreated", text: "订单创建成功通知" },
+                { value: "OrderRefundResult", text: "废票通知" },
+                { value: "OrderApplyReturn", text: "申请退票中" },
+                { value: "OrderApplyRefund", text: "申请废票中" }
+            ]
+            $.each(arr, function (i, item) {
+                select += "<option value='" + item.value + "'>" + item.text + "</option>";
+            });
+            select += "</select>";
+            return select
+        }
+
+        function generateData(index,batch)
+        {
+            var notifyObj = $('#dg').datagrid('getRows')[index];
+            var data = {};
+            if (!batch) {
+                data.MessageType = "";
+                $("#messageTypeSel").each(function (i, item) {
+                    if (item.value) {
+                        console.log(item.value);
+                        data.MessageType = item.value;
+                        return false;
+                    }
+                });               
+            }
+            data.MessageKey = GetMessageKey(notifyObj, data.MessageType);
+            data.NotifyData = "orderno=" + notifyObj.OrderNo
+                            + "&OutTime=" + notifyObj.OutTime
+                            + "&SalesmanID=" + notifyObj.SalesmanID
+                            + "&ProviderID=" + notifyObj.ProviderID
+                            + "&ProxyerID=" + notifyObj.ProxyerID;
+            data.SourceFrom = "手动补推";
+            return data;
+        }
+
+        function send(index) {
+            var data = generateData(index, false);
+            if (!data.MessageType) {
+                $.messager.alert("系统提示", "请选择消息类型");
+                return;
+            }
+            $.messager.confirm("系统提示", "确认补推吗？", function (r) {
+                if (r) {
+                    $.post("/DifferentShow/SendToReceiveFromModel", data, function (ret) {
+                        //ret = eval("(" + r + ")");
+                        if (!ret.Success) {
+                            $.messager.alert("系统提示", ret.Msg, "info");
+                        } else {
+                            $.messager.alert("系统提示", "发送成功!", "info");                          
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        function GetMessageKey(notifyObj, messageType) {
+            var orderNo = notifyObj.OrderNo;
+            var OutTime = notifyObj.OutTime;
+            if (messageType == "OrderApplyReturn" || messageType == "OrderApplyRefund") {
+                orderNo = orderNo + "_" + OutTime.replace(/-/g, "").replace(/ /g, "").replace(/:/g, "");
+            }
+            return orderNo;
+        }
+
+        function batchSend()
+        {
+            var length = $('#dg').datagrid('getSelections');
+            if (length == 0)
+            {
+                $.messager.alert("系统提示", "请勾选数据项");
+                return;
+            }
+            var messageType = "";
+            $("#messageTypeSel").each(function (i, item) {
+                if (item.value) {
+                    console.log(item.value);
+                    messageType = item.value;
+                    return false;
+                }
+            });
+            if (!messageType)
+            {
+                $.messager.alert("系统提示", "请选择消息类型");
+                return;
+            }
+            $.messager.confirm("系统提示", "确认补推吗？", function (r) {
+                if (r) {
+                    $.each($('#dg').datagrid('getSelections'), function (i, item) {
+                        var index = $('#dg').datagrid('getRowIndex', item)
+                        var data = generateData(index, true);
+                        data.MessageType = messageType;                     
+                        $.post("/DifferentShow/SendToReceiveFromModel", data, function (ret) {
+                            var message = "订单号：" + item.OrderNo + "，" + ret.Msg;
+                            if (!ret.Success) {
+                                $.messager.alert("系统提示", message, "info");
+                            } else {
+                                message = "订单号：" + item.OrderNo + "，发送成功!";
+                                $.messager.alert("系统提示", message, "info");                               
+                            }
+                        }, "json");
+                    });                  
+                }
+            });
+         
+        }
+    </script>
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td>                  
+                    <div style="margin-top:2px;">
+                        创建时间：<input type="text" name="StartTime" id="StartTime" class="easyui-datetimebox" style="width:150px;" /> -
+                        <input type="text" name="EndTime" id="EndTime" class="easyui-datetimebox" style="width:150px;" />
+                        订单状态：<select name="Status" id="Status" class="easyui-combobox input">
+    <option value="">--请选择--</option>
+    <option value="1">支付完成</option>
+    <option value="2">出票完成</option>
+    <option value="7">暂不能出票</option>
+    <option value="4">申请退票中</option>
+    <option value="3">申请废票中</option>
+    <option value="5">退款完成</option>
+</select>
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+                        <a class="easyui-linkbutton" iconcls="icon-add" id="btnAdd" plain="true">批量发送</a>
+                        @*<a class="easyui-linkbutton" iconcls="icon-remove" id="btnTruncate" plain="true">清空</a>*@
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--日志-->
+@{ Html.RenderPartial("~/Views/Shared/_Log.cshtml"); }

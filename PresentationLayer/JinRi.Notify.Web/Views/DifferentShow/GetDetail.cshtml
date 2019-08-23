@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "获取推送明细";
+}
+
+@section Script {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#dg").datagrid({
+                url: "/DifferentShow/GetDetailByDay",
+                rownumbers: true,
+                striped: true,
+                singleSelect: true,
+                loadMsg: '数据加载...',
+                //pageList: [20, 30, 50],
+                //pageSize: 20,
+                //pageNumber: 1,
+                pagination: false,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[     
+                     { field: "MessageCreateTime", title: "消息创建时间", align: "left", width: 180 },
+                     { field: "LastModifyTime", title: "消息最后推送时间", align: "left", width: 180 },
+                     { field: "AvgPushTime", title: "平均耗时(s)", align: "left", width: 120 }
+                ]],
+                onClickCell: function (index, field, value) {
+                    if (field == "NotifyData") {
+                        Log.openContentWindow(value);
+                    }
+                },
+                onLoadSuccess: function () {
+                    $("a.tip").each(function (i, item) {
+                        $(this).tooltip({
+                            position: 'bottom',
+                            content: '<textarea style="width: 500px;height: 360px;overflow-y:hidden;" class="input">' + $(this).html() + '</textarea>'
+                        });
+                    });
+                }
+            });
+
+            $("#btnQueryTime").click(function () {
+                var t=Math.random();
+                $.post("/DifferentShow/GetServerTime", { t: t }, function (r) {
+                    
+                    $.messager.alert("系统提示", "sqlServer数据库时间：" + r.SqlDBTime + "\r\n" + "mySqlServer数据库时间：" + r.MySqlDBTime
+                        + "\r\n" + "203服务器时间：" + r.ServerTime_203);
+                }, "json");
+            });
+
+        });
+
+    </script>
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td colspan="4">
+                    @*应用ID：<input type="text" name="AppId" class="input" style="width:100px;" />
+                        消息ID：<input type="text" name="MessageId" class="input" style="width:100px;" />
+                        消息类型：<select name="MessageType" class="easyui-combobox input">
+                            <option value="">--请选择--</option>
+                            @foreach (var item in ViewBag.NotifyMessageTypeList as List<JinRi.Notify.Model.NotifyMessageTypeModel>)
+                            {
+                                <option value="@item.MessageType">@item.Remark</option>
+                            }
+                        </select>
+                        消息优先级：<select name="MessagePriority" class="easyui-combobox input">
+                            <option value="">--请选择--</option>
+                            @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.MessagePriorityEnum)))
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>*@
+                    <div style="margin-top:2px;">
+                        最后推送时间：<input type="text" name="SNextPushTime" class="easyui-datetimebox" style="width:150px;" /> -
+                        <input type="text" name="ENextPushTime" class="easyui-datetimebox" style="width:150px;" />
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnQueryTime" plain="true">获取系统时间</a>
+                        @*<a class="easyui-linkbutton" iconcls="icon-remove" id="btnTruncate" plain="true">清空</a>*@
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--日志-->
+@{ Html.RenderPartial("~/Views/Shared/_Log.cshtml"); }

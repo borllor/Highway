@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Notify.ServiceAgent</RootNamespace>
+    <AssemblyName>JinRi.Notify.ServiceAgent</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Service References\BuilderReceiveServiceSOA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\InstructionServiceSOA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ReceiverReceiveServiceSOA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SenderSendServiceSOA\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.DTO\JinRi.Notify.DTO.csproj">
+      <Project>{4c14cc1f-b1eb-4f62-bde2-089e144c95ae}</Project>
+      <Name>JinRi.Notify.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\JinRi.Notify.DTO.BeatResult.datasource" />
+    <None Include="Properties\DataSources\JinRi.Notify.DTO.NotifyMessageResult.datasource" />
+    <None Include="Properties\DataSources\JinRi.Notify.DTO.PushCallbackResult.datasource" />
+    <None Include="Properties\DataSources\JinRi.Notify.DTO.PushMessageResult.datasource" />
+    <None Include="Properties\DataSources\JinRi.Notify.DTO.TaskMessage.datasource" />
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService.wsdl" />
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InstructionServiceSOA\InstructionService.wsdl" />
+    <None Include="Service References\InstructionServiceSOA\InstructionService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InstructionServiceSOA\InstructionService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InstructionServiceSOA\InstructionService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InstructionServiceSOA\InstructionService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InstructionServiceSOA\InstructionService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService.wsdl" />
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SenderSendServiceSOA\SendService.wsdl" />
+    <None Include="Service References\SenderSendServiceSOA\SendService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SenderSendServiceSOA\SendService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SenderSendServiceSOA\SendService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SenderSendServiceSOA\SendService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BuilderReceiveServiceSOA\" />
+    <WCFMetadataStorage Include="Service References\InstructionServiceSOA\" />
+    <WCFMetadataStorage Include="Service References\ReceiverReceiveServiceSOA\" />
+    <WCFMetadataStorage Include="Service References\SenderSendServiceSOA\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BuilderReceiveServiceSOA\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BuilderReceiveServiceSOA\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BuilderReceiveServiceSOA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SenderSendServiceSOA\SendService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SenderSendServiceSOA\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SenderSendServiceSOA\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SenderSendServiceSOA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReceiverReceiveServiceSOA\ReceiveService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReceiverReceiveServiceSOA\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReceiverReceiveServiceSOA\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ReceiverReceiveServiceSOA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BuilderReceiveServiceSOA\DirectReceiveService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InstructionServiceSOA\InstructionService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InstructionServiceSOA\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InstructionServiceSOA\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\InstructionServiceSOA\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

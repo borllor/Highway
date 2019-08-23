@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "指令中心";
+}
+
+
+@section Script {
+    <script type="text/javascript">
+
+        $(function () {
+            $("#btnSend").click(function () {
+                if ($("#btnSend").linkbutton("options").disabled) { return false; }
+                if (!$("#ff").form("validate")) return false;
+                $("#btnSend").linkbutton("disable");
+                $("#ff").form("submit", {
+                    url: "/Instruction/CreateTask",
+                    success: function (r) {
+                        r = eval("(" + r + ")");
+                        if (r.Success) {
+                            $.messager.alert("系统提示", "添加任务成功!", "info");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", r.Msg, "info");
+                        }
+                        $("#btnSend").linkbutton("enable");
+                    }
+                });
+            });
+
+            $("#dg").datagrid({
+                url: "/Instruction/List",
+                rownumbers: true,
+                striped: true,
+                singleSelect: true,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: "BatchNumber", title: "批次号", align: "center", width: 150 },
+                    { field: "TaskExecutor", title: "服务器IP", align: "center", width: 150 },
+                    { field: "TaskParam", title: "指令", align: "center", width: 260 },
+                    { field: "TaskTypeName", title: "任务类型", align: "center", width: 150 },
+                    { field: "CreateTime", title: "任务时间", align: "center", width: 150 },
+                    { field: "StatusName", title: "任务状态", align: "center", width: 150 }
+                    
+                ]]
+            });
+        });
+    </script>
+}
+
+<form id="ff" method="post" action="">
+    <table class="tLine" style="width:100%">
+        <tr>
+            <td colspan="2">
+                <a class="easyui-linkbutton" iconcls="icon-add" id="btnSend" plain="true">添加任务</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="label" style="width:120px;">
+                任务类型：
+            </td>
+            <td>
+                <select name="TaskType" class="easyui-combobox input" data-options="required:true,editable:false" style="width:200px;">
+                    @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.TaskTypeEnum)))
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                指令：
+            </td>
+            <td>
+                <input type="text" class="easyui-validatebox input" data-options="required:true" name="TaskParam" style="width:200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                已注册服务器：
+            </td>
+            <td>
+               @ViewBag.Servers
+            </td>
+        </tr>
+    </table>
+    <div style="margin-top:2px;">
+        <table id="dg"></table>
+    </div>
+</form>

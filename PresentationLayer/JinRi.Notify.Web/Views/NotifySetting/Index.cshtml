@@ -1,0 +1,343 @@
+﻿@{
+    ViewBag.Title = "Index";
+    var data = ViewBag.Data as List<JinRi.Notify.Model.NotifySettingModel>;
+}
+
+@section Script{
+    <script src="@Url.Content("~/Scripts/json2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/mustache.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var NotifySetting = {};
+        //NotifySetting.delete = function (sender) {
+        //    $(sender).closest("tr").remove();
+        //}
+
+        //优先级选择
+        NotifySetting.select = function () {
+            var value = $(this).combobox("getValue");
+            $(this).closest("tr").find("input.easyui-validatebox").prop("name", value);
+        }
+
+        //消息队列添加
+        NotifySetting.append = function (sender) {
+            var html = [];
+            var tr = $(sender).closest("tr");
+            html.push('<tr><td class="label">MessagePriority.<select class="easyui-combobox" style="width:80px;" data-options="onSelect:AppSetting.select"><option value="High">High</option><option value="Middle">Middle</option><option value="Normal">Normal</option><option value="Low">Low</option></select></td>');
+            html.push('<td><input type="text" name="High" class="easyui-validatebox input" style="width:260px;" data-options="required:true" />&nbsp;<a href="javascript:void(0);" onclick="AppSetting.delete(this)">删除</a></td>');
+            tr.before(html.join(""));
+            var index = $("#tblSetting tr").index(tr);
+            $.parser.parse("#tblSetting tr:gt(" + (index - 2) + ")");
+        }
+
+        //新增配置
+        NotifySetting.add = function () {
+            var opt = $("#opt").val();
+            $("#frmAddSetting").form("submit", {
+                url: opt == "add" ? "/NotifySetting/Add" : "/NotifySetting/Edit",
+                onSubmit: function (param) {
+                    return $(this).form("validate");
+                },
+                success: function (data) {
+                    var r = eval('(' + data + ')');
+                    if (r.Success) {
+                        $.messager.alert("系统提示", "保存成功!", "info");
+                        $("#winAddSetting").dialog("close");
+                        NotifySetting.refresh();
+                    } else {
+                        $.messager.alert("系统提示", r.Msg, "info");
+                    }
+                }
+            });
+        }
+
+        //删除
+        NotifySetting.delete = function () {
+            var settingKey = $("#SettingKey").combobox("getValue");
+            if (!settingKey) {
+                $.messager.alert("系统提示", "请选择要删除的配置项!", "info");
+                return false;
+            }
+            $.messager.confirm("系统提示", "确定要删除此配置项?", function (r) {
+                if (r) {
+                    $.post("/NotifySetting/Delete", { SettingKey: $("#SettingKey").combobox("getValue") }, function (r) {
+                        if (r.Success) {
+                            $.messager.alert("系统提示", "删除成功!", "info");
+                            NotifySetting.refresh();
+                        } else {
+                            $.messager.alert("系统提示", r.Msg, "info");
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        //刷新页面
+        NotifySetting.refresh = function () {
+            setTimeout(function () {
+                window.parent.addTab("NotifySetting", "/NotifySetting/Index?t=" + Math.random());
+            }, 1000);
+        }
+
+        //获取配置
+        NotifySetting.get = function (settingKey) {
+            $.get("/NotifySetting/GetNotifySetting", { SettingKey: settingKey }, function (r) {
+                if (r) {
+                    NotifySetting.render(r);
+                }
+            }, "json")
+        }
+
+        //消息类型检查
+        NotifySetting.check = function (data) {
+            console.log(data);
+            if (!data) { return true };
+            var o = {}, types = [], result = true;
+            $.each(data, function (index, item) {
+                if (item.MessageType && item.MessageType.toString() != "") {
+                    types.push(item.MessageType);
+                }
+            });
+            types = types.toString().split(',');
+            for (var i = 0; i < types.length; i++) {
+                if (!o[types[i]]) {
+                    o[types[i]] = true;
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        //渲染页面
+        NotifySetting.render = function (data) {
+            $("#tblSetting tr:gt(1)").remove();
+            NotifySetting.html = [];
+            NotifySetting.build(data);
+            $("#tblSetting").append(NotifySetting.html.join(""));
+            $.parser.parse("#tblSetting tr:gt(1)");
+            var height = $("#tblSetting").height();
+            height = height < 200 ? $('body.easyui-layout').height() - 20 : height;
+            var title = window.parent.getCurrentTabTitle();
+            $(window.parent.document).find("#iframe_" + title).height(height + 20);
+        }
+
+        //构建页面html
+        NotifySetting.build = function (data, prefix) {
+            prefix = prefix == undefined ? "" : prefix;
+            $.each(data, function (text, value) {
+                if (!(value instanceof Array)) {
+                    try {
+                        value = $.parseJSON(value);
+                    } catch (e) {
+                    }
+                    if (typeof (value) == "boolean") {
+                        var checked = value ? 'checked="checked"' : "";
+                        var boolTpl = $("#booleanTpl").html();
+                        //Mustache.parse(boolTpl);
+                        NotifySetting.html.push(Mustache.render(boolTpl, { text: text, checked: checked, value: value, prefix: prefix }));
+                    } else if (typeof (value) == "number") {
+                        var intTpl = $("#intTpl").html();
+                        NotifySetting.html.push(Mustache.render(intTpl, { text: text, value: value, prefix: prefix }));
+                    } else {
+                        var stringTpl = $("#stringTpl").html();
+                        NotifySetting.html.push(Mustache.render(stringTpl, { text: text, value: value, prefix: prefix }));
+                    }
+                } else {
+                    NotifySetting.html.push(Mustache.render('<tr><td class="label" colspan="2">{{text}}<input type="hidden" id="list" name="list" value="{{text}}" itemcount="{{itemcount}}"></td></tr>', { text: text, itemcount: value.length }));
+                    for (var i = 0; i < value.length; i++) {
+                        var item = value[i];
+                        var properties = [];
+                        $.each(item, function (text, value) {
+                            properties.push(text);
+                        });
+                        NotifySetting.html.push(Mustache.render('<tr><td colspan="2"><input type="hidden" id="item{{index}}" properties="{{properties}}" /></td></tr>', { index: i, properties: properties }));
+                        if (item.MessagePriority && item.MessageType) {
+                            //delete item.MessagePriority;
+                            //delete item.MessageType;
+                            item.MessageType = item.MessageType.toString();
+                        }
+                        NotifySetting.build(item, i);
+                    }
+                }
+            });
+
+        }
+
+        $(function () {
+            $("#SettingKey").combobox({
+                onChange: function (oldValue, newValue) {
+                    var value = $(this).combobox("getValue");
+                    if (value) {
+                        NotifySetting.get(value);
+                    } else {
+                        $("#tblSetting tr:gt(1)").html("");
+                    }
+                }
+            });
+
+            $("#SettingKey").combobox("setText", "---请选择---");
+
+            $("#tblSetting").on("click", ":checkbox", function () {
+                var _id = "#_" + $(this).prop("id");
+                $(_id).val($(this).prop("checked"));
+            });
+
+            //保存配置
+            $("#btnOK").click(function () {
+                var value = $("#SettingKey").combobox("getValue");
+                if (!value) {
+                    $.messager.alert("系统提示", "请选择需要修改的配置项!", "info");
+                    return false;
+                }
+                if (!$("#frm").form("validate")) { return false; }
+                var obj = $("#frm").serializeObject();
+                console.log(obj);
+                var data = {}, subscribeList = [];
+                var itemCount = $("#list").attr("itemcount");
+                $.each(obj, function (text, value) {
+                    data[text] = value;
+                });
+                if(itemCount) {
+                    for (var i = 0; i < itemCount; i++) {
+                        var properties = $("#item" + i).attr("properties");
+                        console.log(properties);
+                        var item = {};
+                        $.each(properties.split(','), function (index, value) {
+                            item[value] = obj[value + "" + i];
+                            delete data[value + "" + i];
+                        });
+                        subscribeList.push(item);
+                        if (item.MessageType != undefined && item.MessageType != null) {
+                            item.MessageType = item.MessageType.split(',');
+                        }
+                    }
+                }
+                var listKey = $("#list").val();
+                if (subscribeList.length > 0) {
+                    data[listKey] = subscribeList;
+                }
+                $.each(data, function (text, value) {
+                    delete data["_" + text];
+                    delete data["list"];
+                });
+                delete data.SettingKey;
+                var param = { SettingKey: obj.SettingKey, SettingValue: JSON.stringify(data) };
+                console.log(data);
+                if (!NotifySetting.check(data[listKey])) {
+                    $.messager.alert("系统提示", "存在重复的消息类型!", "info");
+                    return false;
+                }
+                $.post("/NotifySetting/Edit", param, function (r) {
+                    if (r.Success) {
+                        $.messager.alert("系统提示", "保存成功!", "info");
+                        NotifySetting.render(data);
+                    } else {
+                        $.messager.alert("系统提示", r.Msg, "info");
+                    }
+                }, "json");
+            });
+
+            $("#btnAdd").click(function () {
+                $("#frmAddSetting").form("clear");
+                $("#opt").val("add");
+                $("#winAddSetting").show().dialog({ title: "新增配置", top: 80 }).dialog("open");
+            });
+
+            $("#btnEdit").click(function () {
+                $("#frmAddSetting").form("clear");
+                $("#opt").val("edit");
+                var settingKey = $("#SettingKey").combobox("getValue");
+                if (!settingKey) {
+                    $.messager.alert("系统提示", "请选择需要修改的配置项!", "info");
+                    return false;
+                }
+                $.get("/NotifySetting/GetNotifySetting", { SettingKey: settingKey }, function (r) {
+                    if (r) {
+                        $("#_SettingKey").val(settingKey);
+                        $("#_SettingValue").val(r);
+                    }
+                });
+                $("#winAddSetting").show().dialog({ title: "编辑配置", top: 80 }).dialog("open");
+            });
+
+            $("#btnSave").click(NotifySetting.add);
+            $("#btnDel").click(NotifySetting.delete);
+        });
+
+    </script>
+}
+<input type="hidden" id="opt" name="opt" value="add" />
+<form action="" id="frm">
+    <table id="tblSetting" class="tLine" style="width:650px;">
+        <tbody>
+            <tr>
+                <td colspan="4" align="right" style="text-align: left; margin-right: 10px">
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-save" plain="true" id="btnOK">保存</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-add" plain="true" id="btnAdd">添加</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-edit" plain="true" id="btnEdit">编辑</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-remove" plain="true" id="btnDel">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="label" style="width:150px;">SettingKey：</td>
+                <td>
+                    <select id="SettingKey" name="SettingKey" class="easyui-combobox" data-options="required:true,panelHeight:'auto',editable: false">
+                        <option value="">---请选择---</option>
+                        @foreach (var item in data)
+                        {
+                            <option value="@item.SettingKey">@item.SettingKey</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<!--配置新增-->
+<div id="winAddSetting" style="width: 480px; height: auto; text-align: left; display: none; padding: 2px;"
+     class="easyui-window" modal="true" closed="true" minimizable="false" collapsible="false" maximizable="false">
+    <form id="frmAddSetting" action="" method="post">
+        <table class="tLine" style="width:100%">
+            <tr>
+                <td class="label">SettingKey：</td>
+                <td><input type="text" id="_SettingKey" name="SettingKey" class="easyui-validatebox input" data-options="required:true" /></td>
+            </tr>
+            <tr>
+                <td class="label">SettingValue:</td>
+                <td><textarea id="_SettingValue" name="SettingValue" class="easyui-validatebox input" style="width:320px;height:80px;" data-options="required:true"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right" style="text-align: right; margin-right: 10px">
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-save" plain="true" id="btnSave">确定</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" id="btnClose" iconcls="icon-cancel" plain="true" onclick="$('#winAddSetting').dialog('close');">取消</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script id="booleanTpl" type="x-tmpl-mustache">
+    <tr>
+        <td class="label"><label for="{{text}}">{{text}}：</label></td>
+        <td>
+            <input id="{{text}}" type="checkbox" name="_{{text}}{{prefix}}" {{checked}} />
+            <input id="_{{text}}" type="hidden" name="{{text}}{{prefix}}" value="{{value}}" />
+        </td>
+    </tr>
+</script>
+<script id="intTpl" type="x-tmpl-mustache">
+    <tr>
+        <td class="label">{{text}}：</td>
+        <td>
+            <input type="text" name="{{text}}{{prefix}}" value="{{value}}" class="easyui-numberspinner input" style="width:240px;" required="required" />
+        </td>
+    </tr>
+</script>
+<script id="stringTpl" type="x-tmpl-mustache">
+    <tr>
+        <td class="label">{{text}}：</td>
+        <td>
+            <input type="text" name="{{text}}{{prefix}}" class="easyui-validatebox input" style="width:240px;"  value="{{value}}" />
+        </td>
+    </tr>
+</script>

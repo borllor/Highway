@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "通知消息";
+}
+
+@section Script {
+    <script type="text/javascript">
+        var Urls = {
+            list: "/NotifyMessage/List",
+            historyList: "/NotifyMessage/HistoryList"
+        };
+        $(function () {
+            $("#btnSearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('options').url = Urls.list;
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#btnHistorySearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('options').url = Urls.historyList;
+                $('#dg').datagrid('load', searchData);
+            });
+        
+            $("#dg").datagrid({
+                url: Urls.list,
+                rownumbers: true,
+                striped: true,
+                singleSelect: true,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: "MessageId", title: "消息ID", align: "center", width: 240 },
+                    { field: "AppId", title: "应用ID", align: "center", width: 80 },
+                    { field: "MessageKey", title: "消息key", align: "center", width: 80 },
+                    { field: "MessagePriorityName", title: "消息优先级", align: "left", width: 80 },
+                    { field: "MessageTypeCName", title: "消息类型", align: "center", width: 80 },
+                    {
+                        field: "NotifyData", title: "通知数据", align: "center", width: 120, formatter: function (value, row, index) {
+                            return Log.tooltip(value);
+                        }
+                    },
+                    { field: "SourceFrom", title: "数据来源", align: "center", width: 120 },
+                    { field: "ClientIP", title: "客户端IP", align: "center", width: 120 },
+                    { field: "CreateTime", title: "创建时间", align: "center", width: 150 },
+                    {
+                        field: "opt", title: "操作", align: "center", width: 110, formatter: function (value, row, index) {
+                            if ($("#dg").datagrid('options').url == Urls.historyList) return "";
+                           var a = '<a href="javascript:void(0);" onclick="send(' + index + ')">发送</a>&nbsp;';
+                           return a;
+                      }
+                   }
+                ]],
+                onClickCell: function (index, field, value) {
+                    if (field == "NotifyData") {
+                        Log.openContentWindow(value);
+                    }
+                },
+                onLoadSuccess: function () {
+                    $("a.tip").each(function (i, item) {
+                        $(this).tooltip({
+                            position: 'bottom',
+                            content: '<textarea style="width: 500px;height: 360px;overflow-y:hidden;" class="input">' + $(this).html() + '</textarea>'
+                        });
+                    });
+                }
+            });
+
+        });
+
+        function send(index) {
+            var notifyObj = $('#dg').datagrid('getRows')[index];
+            var data = {};
+            data.MessageId = notifyObj.MessageId;
+            data.MessagePriority = notifyObj.MessagePriority;
+            data.MessageKey = notifyObj.MessageKey;
+            data.MessageType = notifyObj.MessageType;
+            data.NotifyData = notifyObj.NotifyData;
+            data.SourceFrom = "手动补推";
+            $.messager.confirm("系统提示", "确认补推吗？", function (r) {
+                if (r) {
+                    $.post("/DifferentShow/SendToReceiveFromModel", data, function (ret) {
+                        //ret = eval("(" + r + ")");
+                        if (!ret.Success) {
+                            $.messager.alert("系统提示", ret.Msg, "info");
+                        } else {
+                            $.messager.alert("系统提示", "发送成功!", "info");
+                            var searchData = $('#frmSearch').serializeObject();
+                            $('#dg').datagrid('load', searchData);
+                        }
+                    }, "json");
+                }
+            });
+        }
+    </script>
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td colspan="4">
+                    应用ID：<input type="text" name="AppId" class="input" style="width:100px;" />
+                    消息ID：<input type="text" name="MessageId" class="input" style="width:100px;" />
+                    MessageKey：<input type="text" name="MessageKey" class="input" style="width:100px;" />
+                    消息类型：<select name="MessageType" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in ViewBag.NotifyMessageTypeList as List<JinRi.Notify.Model.NotifyMessageTypeModel>)
+                        {
+                            <option value="@item.MessageType">@item.Remark</option>
+                        }
+                    </select>
+                    消息优先级：<select name="MessagePriority" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in Enum.GetNames(typeof(JinRi.Notify.Model.MessagePriorityEnum)))
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                    <div style="margin-top:2px;">
+                        创建时间：<input type="text" name="SCreateTime" class="easyui-datetimebox" style="width:150px;" /> -
+                        <input type="text" name="ECreateTime" class="easyui-datetimebox" style="width:150px;" />
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>&nbsp;
+                        <a class="easyui-linkbutton" iconcls="icon-search" id="btnHistorySearch" plain="true">历史查询</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--日志-->
+@{ Html.RenderPartial("~/Views/Shared/_Log.cshtml"); }

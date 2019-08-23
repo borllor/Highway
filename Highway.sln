@@ -1,0 +1,359 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{3CB85D5C-CF9C-4799-B9BE-0A1C177DABA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLayer", "BusinessLayer", "{0FB0C17E-72F8-4A7C-8D5C-66BE52936BC7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityLayer", "EntityLayer", "{F1823ED0-C006-4E6F-859A-6A4B9ACCBBCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestLayer", "TestLayer", "{2C9A05EA-AC53-4E09-B9D2-EA203921DB21}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{6DC67893-7928-487D-A397-DB30CCF13D12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLayer", "CommonLayer", "{CAAD855C-793C-48ED-B396-1BF8BAF602F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Business", "BusinessLayer\JinRi.Notify.Business\JinRi.Notify.Business.csproj", "{1344941C-F3A1-490E-9AE2-FDF4E458950B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Entity", "EntityLayer\JinRi.Notify.Entity\JinRi.Notify.Entity.csproj", "{2C23C782-94C1-409B-8FB1-B61F3730F95F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Model", "EntityLayer\JinRi.Notify.Model\JinRi.Notify.Model.csproj", "{0F457A6D-F6A5-4543-B019-A18CDD79673E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.DTO", "EntityLayer\JinRi.Notify.DTO\JinRi.Notify.DTO.csproj", "{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.ReceiverService", "PresentationLayer\JinRi.Notify.ReceiverService\JinRi.Notify.ReceiverService.csproj", "{AFCD06A1-1FE6-45C1-A751-843D659B8A93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.SenderService", "PresentationLayer\JinRi.Notify.SenderService\JinRi.Notify.SenderService.csproj", "{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Test", "TestLayer\JinRi.Notify.Test\JinRi.Notify.Test.csproj", "{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Utility", "CommonLayer\JinRi.Notify.Utility\JinRi.Notify.Utility.csproj", "{F3EE215A-2351-4FC7-A8CC-1159211740E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APILayer", "APILayer", "{664EAAC0-92EA-440D-8CA2-63B5A41A70D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper NET45", "APILayer\dapper-dot-net-master\Dapper NET45\Dapper NET45.csproj", "{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmitMapper", "APILayer\EmitMapper\EmitMapper.csproj", "{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyNetQ", "APILayer\EasyNetQ\EasyNetQ.csproj", "{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.DB", "DataLayer\JinRi.Notify.DB\JinRi.Notify.DB.csproj", "{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Web", "PresentationLayer\JinRi.Notify.Web\JinRi.Notify.Web.csproj", "{88CE2922-F17E-4C63-9D01-3F5F6B657171}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.ServiceModel", "EntityLayer\JinRi.Notify.ServiceModel\JinRi.Notify.ServiceModel.csproj", "{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPager", "APILayer\MvcPager\MvcPager.csproj", "{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.ServiceAgent", "DataLayer\JinRi.Notify.ServiceAgent\JinRi.Notify.ServiceAgent.csproj", "{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.RedoService", "PresentationLayer\JinRi.Notify.RedoService\JinRi.Notify.RedoService.csproj", "{DFE76712-4A1B-4D86-92FF-156F74723DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.BuilderService", "PresentationLayer\JinRi.Notify.BuilderService\JinRi.Notify.BuilderService.csproj", "{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.OrderScanService", "PresentationLayer\JinRi.Notify.OrderScanService\JinRi.Notify.OrderScanService.csproj", "{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Monitor", "PresentationLayer\JinRi.Notify.Monitor\JinRi.Notify.Monitor.csproj", "{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySql.Data", "APILayer\MySql.Data\MySql.Data.csproj", "{47266636-A5CD-481A-A6D5-0CE5065A3385}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.InstructionService", "PresentationLayer\JinRi.Notify.InstuctionService\JinRi.Notify.InstructionService.csproj", "{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JinRi.Notify.Frame", "CommonLayer\JinRi.Notify.Frame\JinRi.Notify.Frame.csproj", "{90D6C981-E555-49C5-96FF-39CFD32316A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{DFCB7FDE-D75A-450B-910E-486C00C32D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{99C75C77-EE1A-4303-8367-BF38CF6E23DF}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\SQL\messagetypeenum.sql = Resources\SQL\messagetypeenum.sql
+		Resources\SQL\notifyinterfacesetting.sql = Resources\SQL\notifyinterfacesetting.sql
+		Resources\SQL\notifymessage.sql = Resources\SQL\notifymessage.sql
+		Resources\SQL\notifysetting.sql = Resources\SQL\notifysetting.sql
+		Resources\SQL\pushmessage.sql = Resources\SQL\pushmessage.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 25
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://jishu-tfs:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BusinessLayer\\JinRi.Notify.Business\\JinRi.Notify.Business.csproj
+		SccProjectTopLevelParentUniqueName1 = JinRi.Notify.sln
+		SccProjectName1 = BusinessLayer/JinRi.Notify.Business
+		SccLocalPath1 = BusinessLayer\\JinRi.Notify.Business
+		SccProjectUniqueName2 = CommonLayer\\JinRi.Notify.Utility\\JinRi.Notify.Utility.csproj
+		SccProjectTopLevelParentUniqueName2 = JinRi.Notify.sln
+		SccProjectName2 = CommonLayer/JinRi.Notify.Utility
+		SccLocalPath2 = CommonLayer\\JinRi.Notify.Utility
+		SccProjectUniqueName3 = EntityLayer\\JinRi.Notify.DTO\\JinRi.Notify.DTO.csproj
+		SccProjectTopLevelParentUniqueName3 = JinRi.Notify.sln
+		SccProjectName3 = EntityLayer/JinRi.Notify.DTO
+		SccLocalPath3 = EntityLayer\\JinRi.Notify.DTO
+		SccProjectUniqueName4 = EntityLayer\\JinRi.Notify.Entity\\JinRi.Notify.Entity.csproj
+		SccProjectTopLevelParentUniqueName4 = JinRi.Notify.sln
+		SccProjectName4 = EntityLayer/JinRi.Notify.Entity
+		SccLocalPath4 = EntityLayer\\JinRi.Notify.Entity
+		SccProjectUniqueName5 = EntityLayer\\JinRi.Notify.Model\\JinRi.Notify.Model.csproj
+		SccProjectTopLevelParentUniqueName5 = JinRi.Notify.sln
+		SccProjectName5 = EntityLayer/JinRi.Notify.Model
+		SccLocalPath5 = EntityLayer\\JinRi.Notify.Model
+		SccProjectUniqueName6 = PresentationLayer\\JinRi.Notify.ReceiverService\\JinRi.Notify.ReceiverService.csproj
+		SccProjectTopLevelParentUniqueName6 = JinRi.Notify.sln
+		SccProjectName6 = PresentationLayer/JinRi.Notify.ReceiverService
+		SccLocalPath6 = PresentationLayer\\JinRi.Notify.ReceiverService
+		SccProjectUniqueName7 = PresentationLayer\\JinRi.Notify.SenderService\\JinRi.Notify.SenderService.csproj
+		SccProjectTopLevelParentUniqueName7 = JinRi.Notify.sln
+		SccProjectName7 = PresentationLayer/JinRi.Notify.SenderService
+		SccLocalPath7 = PresentationLayer\\JinRi.Notify.SenderService
+		SccProjectUniqueName8 = TestLayer\\JinRi.Notify.Test\\JinRi.Notify.Test.csproj
+		SccProjectTopLevelParentUniqueName8 = JinRi.Notify.sln
+		SccProjectName8 = TestLayer/JinRi.Notify.Test
+		SccLocalPath8 = TestLayer\\JinRi.Notify.Test
+		SccProjectUniqueName9 = APILayer\\dapper-dot-net-master\\Dapper\u0020NET45\\Dapper\u0020NET45.csproj
+		SccProjectTopLevelParentUniqueName9 = JinRi.Notify.sln
+		SccProjectName9 = APILayer/dapper-dot-net-master/Dapper\u0020NET45
+		SccLocalPath9 = APILayer\\dapper-dot-net-master\\Dapper\u0020NET45
+		SccProjectUniqueName10 = APILayer\\EmitMapper\\EmitMapper.csproj
+		SccProjectTopLevelParentUniqueName10 = JinRi.Notify.sln
+		SccProjectName10 = APILayer/EmitMapper
+		SccLocalPath10 = APILayer\\EmitMapper
+		SccProjectUniqueName11 = APILayer\\EasyNetQ\\EasyNetQ.csproj
+		SccProjectTopLevelParentUniqueName11 = JinRi.Notify.sln
+		SccProjectName11 = APILayer/EasyNetQ
+		SccLocalPath11 = APILayer\\EasyNetQ
+		SccProjectUniqueName12 = APILayer\\Newtonsoft.Json\\Newtonsoft.Json.Net40.csproj
+		SccProjectTopLevelParentUniqueName12 = JinRi.Notify.sln
+		SccProjectName12 = APILayer/Newtonsoft.Json
+		SccLocalPath12 = APILayer\\Newtonsoft.Json
+		SccProjectUniqueName13 = DataLayer\\JinRi.Notify.DB\\JinRi.Notify.DB.csproj
+		SccProjectTopLevelParentUniqueName13 = JinRi.Notify.sln
+		SccProjectName13 = DataLayer/JinRi.Notify.DB
+		SccLocalPath13 = DataLayer\\JinRi.Notify.DB
+		SccProjectUniqueName14 = PresentationLayer\\JinRi.Notify.Web\\JinRi.Notify.Web.csproj
+		SccProjectTopLevelParentUniqueName14 = JinRi.Notify.sln
+		SccProjectName14 = PresentationLayer/JinRi.Notify.Web
+		SccLocalPath14 = PresentationLayer\\JinRi.Notify.Web
+		SccProjectUniqueName15 = EntityLayer\\JinRi.Notify.ServiceModel\\JinRi.Notify.ServiceModel.csproj
+		SccProjectTopLevelParentUniqueName15 = JinRi.Notify.sln
+		SccProjectName15 = EntityLayer/JinRi.Notify.ServiceModel
+		SccLocalPath15 = EntityLayer\\JinRi.Notify.ServiceModel
+		SccProjectUniqueName16 = APILayer\\MvcPager\\MvcPager.csproj
+		SccProjectTopLevelParentUniqueName16 = JinRi.Notify.sln
+		SccProjectName16 = APILayer/MvcPager
+		SccLocalPath16 = APILayer\\MvcPager
+		SccProjectUniqueName17 = DataLayer\\JinRi.Notify.ServiceAgent\\JinRi.Notify.ServiceAgent.csproj
+		SccProjectTopLevelParentUniqueName17 = JinRi.Notify.sln
+		SccProjectName17 = DataLayer/JinRi.Notify.ServiceAgent
+		SccLocalPath17 = DataLayer\\JinRi.Notify.ServiceAgent
+		SccProjectUniqueName18 = PresentationLayer\\JinRi.Notify.RedoService\\JinRi.Notify.RedoService.csproj
+		SccProjectTopLevelParentUniqueName18 = JinRi.Notify.sln
+		SccProjectName18 = PresentationLayer/JinRi.Notify.RedoService
+		SccLocalPath18 = PresentationLayer\\JinRi.Notify.RedoService
+		SccProjectUniqueName19 = PresentationLayer\\JinRi.Notify.BuilderService\\JinRi.Notify.BuilderService.csproj
+		SccProjectTopLevelParentUniqueName19 = JinRi.Notify.sln
+		SccProjectName19 = PresentationLayer/JinRi.Notify.BuilderService
+		SccLocalPath19 = PresentationLayer\\JinRi.Notify.BuilderService
+		SccProjectUniqueName20 = PresentationLayer\\JinRi.Notify.OrderScanService\\JinRi.Notify.OrderScanService.csproj
+		SccProjectTopLevelParentUniqueName20 = JinRi.Notify.sln
+		SccProjectName20 = PresentationLayer/JinRi.Notify.OrderScanService
+		SccLocalPath20 = PresentationLayer\\JinRi.Notify.OrderScanService
+		SccProjectUniqueName21 = PresentationLayer\\JinRi.Notify.Monitor\\JinRi.Notify.Monitor.csproj
+		SccProjectTopLevelParentUniqueName21 = JinRi.Notify.sln
+		SccProjectName21 = PresentationLayer/JinRi.Notify.Monitor
+		SccLocalPath21 = PresentationLayer\\JinRi.Notify.Monitor
+		SccProjectUniqueName22 = APILayer\\MySql.Data\\MySql.Data.csproj
+		SccProjectTopLevelParentUniqueName22 = JinRi.Notify.sln
+		SccProjectName22 = APILayer/MySql.Data
+		SccLocalPath22 = APILayer\\MySql.Data
+		SccProjectUniqueName23 = PresentationLayer\\JinRi.Notify.InstuctionService\\JinRi.Notify.InstructionService.csproj
+		SccProjectTopLevelParentUniqueName23 = JinRi.Notify.sln
+		SccProjectName23 = PresentationLayer/JinRi.Notify.InstuctionService
+		SccLocalPath23 = PresentationLayer\\JinRi.Notify.InstuctionService
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Develog|Any CPU = Develog|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Develog|Any CPU.ActiveCfg = Develog|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Develog|Any CPU.Build.0 = Develog|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47266636-A5CD-481A-A6D5-0CE5065A3385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Develog|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Develog|Any CPU.Build.0 = Debug|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D6C981-E555-49C5-96FF-39CFD32316A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFE1BBB5-34B0-485A-A77F-B26EA0793E65} = {3CB85D5C-CF9C-4799-B9BE-0A1C177DABA6}
+		{DCFFB632-BC7C-4757-B078-5A15AE88FE1B} = {3CB85D5C-CF9C-4799-B9BE-0A1C177DABA6}
+		{1344941C-F3A1-490E-9AE2-FDF4E458950B} = {0FB0C17E-72F8-4A7C-8D5C-66BE52936BC7}
+		{2C23C782-94C1-409B-8FB1-B61F3730F95F} = {F1823ED0-C006-4E6F-859A-6A4B9ACCBBCF}
+		{0F457A6D-F6A5-4543-B019-A18CDD79673E} = {F1823ED0-C006-4E6F-859A-6A4B9ACCBBCF}
+		{4C14CC1F-B1EB-4F62-BDE2-089E144C95AE} = {F1823ED0-C006-4E6F-859A-6A4B9ACCBBCF}
+		{7396079D-A1CA-44E3-8D18-AA0BC52C43F1} = {F1823ED0-C006-4E6F-859A-6A4B9ACCBBCF}
+		{156978CC-4F46-4BBF-AE9B-864C92B3B0B7} = {2C9A05EA-AC53-4E09-B9D2-EA203921DB21}
+		{AFCD06A1-1FE6-45C1-A751-843D659B8A93} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{8DB9CF6A-B04B-4519-BF88-D9E1D867F75A} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{88CE2922-F17E-4C63-9D01-3F5F6B657171} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{DFE76712-4A1B-4D86-92FF-156F74723DFC} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{5A79F920-F59B-4E9B-A5A7-0684AE03BBDE} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{0EC28B56-7594-4552-A5BA-5E5A9BB227C3} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{BE77AEB3-4E04-4DB9-9A17-1901B66FEA2E} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{87DF2F64-9294-4AE3-BA61-DE5F07FF1402} = {6DC67893-7928-487D-A397-DB30CCF13D12}
+		{F3EE215A-2351-4FC7-A8CC-1159211740E9} = {CAAD855C-793C-48ED-B396-1BF8BAF602F0}
+		{0FFF5BC7-0A4B-4D87-835E-4FAD70937507} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{1B6AB0C8-B8E2-47AC-89E8-8B029EA1BCA2} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{B8DEF709-5168-48F1-B8D3-AD44E4A4A22B} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{EB54AA5A-1F91-4FDD-8E36-75EA8BE6CE7D} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{47266636-A5CD-481A-A6D5-0CE5065A3385} = {664EAAC0-92EA-440D-8CA2-63B5A41A70D1}
+		{90D6C981-E555-49C5-96FF-39CFD32316A8} = {CAAD855C-793C-48ED-B396-1BF8BAF602F0}
+		{99C75C77-EE1A-4303-8367-BF38CF6E23DF} = {DFCB7FDE-D75A-450B-910E-486C00C32D0A}
+	EndGlobalSection
+EndGlobal

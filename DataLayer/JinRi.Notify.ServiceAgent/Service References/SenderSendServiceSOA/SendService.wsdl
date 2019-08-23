@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SendService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.5.149:8030/SendService.svc?xsd=xsd3" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.5.149:8030/SendService.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.5.149:8030/SendService.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.DTO" />
+      <xsd:import schemaLocation="http://192.168.5.149:8030/SendService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JinRi.Notify.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISendService_Receive_InputMessage">
+    <wsdl:part name="parameters" element="tns:Receive" />
+  </wsdl:message>
+  <wsdl:message name="ISendService_Receive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISendService_ReceiveList_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveList" />
+  </wsdl:message>
+  <wsdl:message name="ISendService_ReceiveList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISendService_Callback_InputMessage">
+    <wsdl:part name="parameters" element="tns:Callback" />
+  </wsdl:message>
+  <wsdl:message name="ISendService_Callback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CallbackResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISendService">
+    <wsdl:operation name="Receive">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISendService/Receive" message="tns:ISendService_Receive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISendService/ReceiveResponse" message="tns:ISendService_Receive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISendService/ReceiveList" message="tns:ISendService_ReceiveList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISendService/ReceiveListResponse" message="tns:ISendService_ReceiveList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Callback">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISendService/Callback" message="tns:ISendService_Callback_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISendService/CallbackResponse" message="tns:ISendService_Callback_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISendService" type="tns:ISendService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Receive">
+      <soap:operation soapAction="http://tempuri.org/ISendService/Receive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiveList">
+      <soap:operation soapAction="http://tempuri.org/ISendService/ReceiveList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Callback">
+      <soap:operation soapAction="http://tempuri.org/ISendService/Callback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SendService">
+    <wsdl:port name="BasicHttpBinding_ISendService" binding="tns:BasicHttpBinding_ISendService">
+      <soap:address location="http://192.168.5.149:8030/SendService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,124 @@
+html, body {
+    background-color: #e0e1e3;
+    text-align: center;
+}
+.m-main {
+    margin-top: 100px;
+}
+.m-loginArea {
+    width: 310px;
+    margin: 30px auto;
+    position: relative;
+}
+.m-loginArea .errorNote {
+    position: absolute;
+    left: 0;
+    top: -30px;
+    background-color: #fffedf;
+    border: 1px solid #f8d3a7;
+    color: #666;
+    width: 298px;
+    line-height: 28px;
+    height: 28px;
+    text-align: left;
+    padding-left: 10px;
+}
+.m-loginArea .errorNote .icon {
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url("../images/errorIcon.png") no-repeat scroll 0 0 transparent;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.m-loginArea p {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    text-align: left;
+    padding: 8px 0;
+}
+.m-loginArea .m-user {
+    border-radius: 5px 5px 0 0;
+    margin-bottom: -1px;
+}
+.m-loginArea .m-pwd {
+    border-radius: 0 0 5px 5px;
+}
+.m-loginArea p span {
+    display: inline-block;
+    width: 20px;
+    height: 22px;
+    margin: 0 13px;
+    vertical-align: middle;
+}
+.m-loginArea p input {
+    border: 0 none;
+    border-left: 1px solid #e6e6e6;
+    height: 28px;
+    line-height: 28px;
+    width: 221px;
+    font-size: 16px;
+}
+.m-loginArea p input:focus {
+    border: 0 none;
+    border-left: 1px solid #e6e6e6;
+}
+
+.m-loginArea .userIcon {
+    background: url("../images/loginUser.png") no-repeat scroll 0 0 transparent;
+}
+.m-loginArea .pwdIcon {
+    background: url("../images/loginPwd.png") no-repeat scroll 0 0 transparent;
+}
+.u-subTitle {
+    font-family: Arial,'微软雅黑';
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+.m-loginArea .u-btn-login {
+    width: 310px;
+    height: 44px;
+    background-color: #e40000;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 0 none;
+    color: #fff;
+    margin: 20px 0;
+    border-bottom: 2px solid #c20000;
+}
+.checkbox {
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+    vertical-align: text-bottom;
+    margin-right: 5px;
+    border-radius: 2px;
+    padding: 2px;
+}
+.checkbox .checked {
+    display: block;
+    background-color: #e40000;
+    width: 8px;
+    height: 8px;
+}
+label {
+    cursor: pointer;
+}
+.u-note {
+    color: #999;
+}
+.foot {
+    background: url("../images/loginFoot_bg.png") repeat-x scroll center transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 136px;
+    width: 100%;
+}
+.u-copyright {
+    color: #8c8c8c;
+    margin-top: 100px;
+}

@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90D6C981-E555-49C5-96FF-39CFD32316A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Framework</RootNamespace>
+    <AssemblyName>JinRi.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\NET40_THRIFT\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET40,THRIFT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\NET40_THRIFT\</OutputPath>
+    <DefineConstants>TRACE;NET40,THRIFT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JRedis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Redis\JRedis.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\MemcachedClient\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Thrift, Version=0.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\thrift\Thrift.dll</HintPath>
+    </Reference>
+    <Reference Include="JZooKeeperNet">
+      <HintPath>lib\ZK\JZooKeeperNet.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>lib\MongoDB\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>lib\MongoDB\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="JLog4net">
+      <HintPath>lib\JLog4net\JLog4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Metrics">
+      <HintPath>lib\JMeter\Metrics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>lib\JMeter\System.Net.Http.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alloc\ITaskAllocAlg.cs" />
+    <Compile Include="Alloc\TaskAllocAlgFactory.cs" />
+    <Compile Include="Alloc\TaskAllocAlgProvider.cs" />
+    <Compile Include="Alloc\TaskAllocAlgProviderManager.cs" />
+    <Compile Include="App\Cache\DataCache.cs" />
+    <Compile Include="App\Cache\ICacheProvider.cs" />
+    <Compile Include="App\Cache\IRedisProvider.cs" />
+    <Compile Include="App\Cache\MemoryCache.cs" />
+    <Compile Include="App\Cache\MemoryCacheProvider.cs" />
+    <Compile Include="App\Cache\RedisCache.cs" />
+    <Compile Include="App\Cache\RedisSockIOPool.cs" />
+    <Compile Include="App\Cache\RedisProvider.cs" />
+    <Compile Include="App\Cache\WebCacheProvider.cs" />
+    <Compile Include="App\Cache\MemcachedCache.cs" />
+    <Compile Include="App\Cache\WebCache.cs" />
+    <Compile Include="App\Database\ConnectionStringFactory.cs" />
+    <Compile Include="App\Database\DatabaseEnum.cs" />
+    <Compile Include="App\Database\DatabaseHelper.cs" />
+    <Compile Include="App\Database\DataRowContainer.cs" />
+    <Compile Include="App\Database\DbBase.cs" />
+    <Compile Include="App\Database\DbHelper.cs" />
+    <Compile Include="App\Database\IDbBase.cs" />
+    <Compile Include="App\Database\SqlExceptionHelper.cs" />
+    <Compile Include="App\DataBuffer\DataBuffer.cs" />
+    <Compile Include="App\DataBuffer\DataBufferPool.cs" />
+    <Compile Include="App\DataBuffer\IDataBuffer.cs" />
+    <Compile Include="App\DataBuffer\IDataBufferPool.cs" />
+    <Compile Include="App\DBLog\DBLog.cs" />
+    <Compile Include="App\FileTrans\FileTransEventArgs.cs" />
+    <Compile Include="App\FileTrans\FileTransHandle.cs" />
+    <Compile Include="App\FileTrans\FileTransProcess.cs" />
+    <Compile Include="App\FileTrans\FileTransTaskInfo.cs" />
+    <Compile Include="App\FileTrans\FileLog.cs" />
+    <Compile Include="App\FileTrans\GetFileTransHandle.cs" />
+    <Compile Include="App\FileTrans\GetFileTransTaskInfo.cs" />
+    <Compile Include="App\HeartBeat\Entity\HeartBeatTaskInfo.cs" />
+    <Compile Include="App\HeartBeat\TaskHandler\HeartBeatTaskHandle.cs" />
+    <Compile Include="App\Log\ILoggerSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\Log\LoggerSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\Log\LoggerSourceImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\Log\ILog.cs" />
+    <Compile Include="App\Cache\MemcachedProvider.cs" />
+    <Compile Include="App\Cache\IMemcachedProvider.cs" />
+    <Compile Include="App\Cache\MemcachedSockIOPool.cs" />
+    <Compile Include="App\Log\MogoDB\MongoAppenderFileld.cs" />
+    <Compile Include="App\Log\MogoDB\MongoBackwardCompatibility.cs" />
+    <Compile Include="App\Log\MogoDB\MongoDBAppender.cs" />
+    <Compile Include="App\Msmq\Common\MsmqHelper.cs" />
+    <Compile Include="App\Msmq\Common\MsmqObserver.cs" />
+    <Compile Include="App\Msmq\Common\PollingPool.cs" />
+    <Compile Include="App\Msmq\DAL\LogMessageDAL.cs" />
+    <Compile Include="App\Msmq\Entity\LogMessageTaskInfo.cs" />
+    <Compile Include="App\Msmq\Entity\LogMessage.cs" />
+    <Compile Include="App\Msmq\Logger\DBLogger.cs" />
+    <Compile Include="App\Msmq\Logger\IAppLogger.cs" />
+    <Compile Include="App\Msmq\Logger\LoggerFactory.cs" />
+    <Compile Include="App\Msmq\Logger\MsmqLogger.cs" />
+    <Compile Include="App\Msmq\TaskHandle\LogMessageTaskHandle.cs" />
+    <Compile Include="App\Res\Res.cs" />
+    <Compile Include="Common\CallPushData.cs" />
+    <Compile Include="Configs\Redis\RedisSection.cs" />
+    <Compile Include="Configs\Redis\RedisServerCollection.cs" />
+    <Compile Include="Configs\Redis\RedisServerElement.cs" />
+    <Compile Include="Configs\TblWebConfig\TblWebConfig.cs" />
+    <Compile Include="Configs\Thrift\ThriftSection.cs" />
+    <Compile Include="Configs\Thrift\ThriftServerCollection.cs" />
+    <Compile Include="Configs\Thrift\ThriftServerElement.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Thrift\LogMessage.cs" />
+    <Compile Include="Thrift\LogService.cs" />
+    <Compile Include="Thrift\ThriftServer.cs" />
+    <Compile Include="Util\ClientHelper.cs" />
+    <Compile Include="Util\CryptographyHelper.cs" />
+    <Compile Include="Util\ExceptionExtension.cs" />
+    <Compile Include="Util\FirstRequestInitialization.cs" />
+    <Compile Include="Util\Metrics\JMetricsHelper.cs" />
+    <Compile Include="Util\Metrics\MetricsEnum.cs" />
+    <Compile Include="Util\Metrics\AppMetricsKeys.cs" />
+    <Compile Include="Util\RegexHelper.cs" />
+    <Compile Include="Configs\AppSetting\AppSetting.cs" />
+    <Compile Include="Configs\Memcached\MemcachedSection.cs" />
+    <Compile Include="Configs\Memcached\MemcachedServerCollection.cs" />
+    <Compile Include="Configs\Memcached\MemcachedServerElement.cs" />
+    <Compile Include="Configs\Server\ServerCollection.cs" />
+    <Compile Include="Configs\Server\ServerElement.cs" />
+    <Compile Include="Configs\Server\ServersSection.cs" />
+    <Compile Include="Configs\TaskAllocAlgProvider\TaskAllocAlgProviderCollection.cs" />
+    <Compile Include="Configs\TaskAllocAlgProvider\TaskAllocAlgProviderElement.cs" />
+    <Compile Include="Configs\TaskAllocAlgProvider\TaskAllocAlgProvidersSection.cs" />
+    <Compile Include="Configs\TaskHandles\TaskHandleCollection.cs" />
+    <Compile Include="Configs\TaskHandles\TaskHandleElement.cs" />
+    <Compile Include="Configs\TaskHandles\TaskHandlesSection.cs" />
+    <Compile Include="Generic\Collections\ExclusiveLockStrategy.cs" />
+    <Compile Include="Generic\Collections\IIndexable.cs" />
+    <Compile Include="Generic\Collections\ILockStrategy.cs" />
+    <Compile Include="Generic\Collections\IPagedList.cs" />
+    <Compile Include="Generic\Collections\ISharedCollectionLock.cs" />
+    <Compile Include="Generic\Collections\LockingStrategy.cs" />
+    <Compile Include="Generic\Collections\LockingStrategyFactory.cs" />
+    <Compile Include="Generic\Collections\MonitorLock.cs" />
+    <Compile Include="Generic\Collections\NaiveLockingList.cs" />
+    <Compile Include="Generic\Collections\PagedList.cs" />
+    <Compile Include="Generic\Collections\PagedSelector.cs" />
+    <Compile Include="Generic\Collections\PagingExtensions.cs" />
+    <Compile Include="Generic\Collections\ReaderWriterLockStrategy.cs" />
+    <Compile Include="Generic\Collections\ReaderWriterSlimLock.cs" />
+    <Compile Include="Generic\Collections\ReadLockRequiredException.cs" />
+    <Compile Include="Generic\Collections\SharedDictionary.cs" />
+    <Compile Include="Generic\Collections\SharedList.cs" />
+    <Compile Include="Generic\Collections\WriteLockRequiredException.cs" />
+    <Compile Include="Generic\JDictionary.cs" />
+    <Compile Include="Generic\NameObjectCollection.cs" />
+    <Compile Include="Generic\Null.cs" />
+    <Compile Include="Handle\ITaskHandle.cs" />
+    <Compile Include="Handle\TaskHandle.cs" />
+    <Compile Include="Handle\TaskHandleFactory.cs" />
+    <Compile Include="Handle\TaskHandleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\ITaskRequest.cs" />
+    <Compile Include="Request\TaskRequest.cs" />
+    <Compile Include="Server\IServerInfo.cs" />
+    <Compile Include="Server\ServerHandler.cs" />
+    <Compile Include="Server\ServerInfo.cs" />
+    <Compile Include="Server\ServerManager.cs" />
+    <Compile Include="Server\ServerStatus.cs" />
+    <Compile Include="Service\RegisterService.cs" />
+    <Compile Include="Task\ITaskInfo.cs" />
+    <Compile Include="Task\TaskInfo.cs" />
+    <Compile Include="Task\TaskProcess.cs" />
+    <Compile Include="Task\TaskResult.cs" />
+    <Compile Include="Task\TaskStatus.cs" />
+    <Compile Include="Util\ConfigHelper.cs" />
+    <Compile Include="Util\DataHelper.cs" />
+    <Compile Include="Util\IPHelper.cs" />
+    <Compile Include="Util\MailHelper.cs" />
+    <Compile Include="Util\NumericHelper.cs" />
+    <Compile Include="Util\SmsHelper.cs" />
+    <Compile Include="Util\XmlHelper.cs" />
+    <Compile Include="Util\GZipUtil.cs" />
+    <Compile Include="Util\ZooKeeper\MasterElectionClient.cs" />
+    <Compile Include="Util\ZooKeeper\ZKManager.cs" />
+    <Compile Include="Util\ZooKeeper\ZKServerInfo.cs" />
+    <Compile Include="Web References\SmsForJinRi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\MongoDB\MongoDB.Bson.dll" />
+    <Content Include="lib\MongoDB\MongoDB.Bson.xml" />
+    <Content Include="lib\MongoDB\MongoDB.dll" />
+    <Content Include="lib\MongoDB\MongoDB.Driver.dll" />
+    <Content Include="lib\MongoDB\MongoDB.Driver.xml" />
+    <Content Include="lib\MemcachedClient\log4net.dll" />
+    <Content Include="lib\MemcachedClient\Commons.dll" />
+    <Content Include="lib\MemcachedClient\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="lib\MemcachedClient\Memcached.ClientLibrary.dll" />
+    <Content Include="lib\Postgresql\Mono.Security.dll" />
+    <Content Include="lib\Postgresql\Npgsql.dll" />
+    <Content Include="lib\Redis\JRedis.dll" />
+    <Content Include="lib\Redis\JRedis.XML" />
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SmsForJinRi\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SmsForJinRi\SmsService.disco" />
+    <None Include="Web References\SmsForJinRi\SmsService.wsdl" />
+    <None Include="lib\JLog4net\JLog4net.XML" />
+    <None Include="lib\JLog4net\JLog4net.dll" />
+    <None Include="lib\ZK\JZooKeeperNet.XML" />
+    <None Include="lib\ZK\JZooKeeperNet.dll" />
+    <None Include="lib\JMeter\Metrics.dll" />
+    <None Include="lib\JMeter\Metrics.pdb" />
+    <None Include="lib\JMeter\Metrics.xml" />
+    <None Include="lib\JMeter\System.Net.Http.dll" />
+    <None Include="lib\JMeter\System.Net.Http.xml" />
+    <None Include="lib\Thrift\Thrift.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://sms2.jinri.cn/JinRiSms/SmsService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\SmsForJinRi\</RelPath>
+      <UpdateFromURL>http://sms2.jinri.cn/JinRiSms/SmsService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>JinRi_App_Framework_SmsForJinRi_SmsService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{47266636-A5CD-481A-A6D5-0CE5065A3385}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MySql.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Resources\ConnectorNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MySql.Data.Common\Cache.cs" />
+    <Compile Include="MySql.Data.Common\ContextString.cs" />
+    <Compile Include="MySql.Data.Common\DBVersion.cs" />
+    <Compile Include="MySql.Data.Common\LowResolutionStopwatch.cs" />
+    <Compile Include="MySql.Data.Common\MyNetworkStream.cs" />
+    <Compile Include="MySql.Data.Common\NamedPipeStream.cs" />
+    <Compile Include="MySql.Data.Common\NativeMethods.cs" />
+    <Compile Include="MySql.Data.Common\Platform.cs" />
+    <Compile Include="MySql.Data.Common\QueryNormalizer.cs" />
+    <Compile Include="MySql.Data.Common\SharedMemory.cs" />
+    <Compile Include="MySql.Data.Common\SharedMemoryStream.cs" />
+    <Compile Include="MySql.Data.Common\StreamCreator.cs" />
+    <Compile Include="MySql.Data.Common\Token.cs" />
+    <Compile Include="MySql.Data.Common\TokenType.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\AuthenticationPluginManager.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\MySqlAuthenticationPlugin.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\MySqlNativePasswordPlugin.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\MySqlWindowsAuthenticationPlugin.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\PluginInfo.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SecBuffer.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SecBufferDesc.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SecBufferType.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SecHandle.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SecPkgContext_Sizes.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SECURITY_HANDLE.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\SECURITY_INTEGER.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Authentication\Sha256AuthenticationPlugin.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Memcached\BinaryClient.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Memcached\Client.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Memcached\MemcachedException.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Memcached\MemcachedFlags.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Memcached\TextClient.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Properties\Resources.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Replication\ReplicationManager.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Replication\ReplicationRoundRobinServerGroup.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Replication\ReplicationServer.cs" />
+    <Compile Include="MySql.Data.MySqlClient.Replication\ReplicationServerGroup.cs" />
+    <Compile Include="MySql.Data.MySqlClient\AuthenticationPluginConfigurationElement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\BaseCommandInterceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\BaseExceptionInterceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\BaseTableCache.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CharacterSet.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CharSetMap.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ClientFlags.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ColumnFlags.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CommandInterceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CommandTimer.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CompressedStream.cs" />
+    <Compile Include="MySql.Data.MySqlClient\Crypt.cs" />
+    <Compile Include="MySql.Data.MySqlClient\CustomInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MySql.Data.MySqlClient\DBCmd.cs" />
+    <Compile Include="MySql.Data.MySqlClient\Driver.cs" />
+    <Compile Include="MySql.Data.MySqlClient\DriverTransactionManager.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ExceptionInterceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\Field_Type.cs" />
+    <Compile Include="MySql.Data.MySqlClient\GenericConfigurationElementCollection.cs" />
+    <Compile Include="MySql.Data.MySqlClient\IDriver.cs" />
+    <Compile Include="MySql.Data.MySqlClient\Interceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\InterceptorConfigurationElement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ISSchemaProvider.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlBulkLoader.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlBulkLoaderConflictOption.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlBulkLoaderPriority.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlCertificateStoreLocation.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlClientFactory.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlClientPermission.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlClientPermissionAttribute.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlCommand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MySql.Data.MySqlClient\MySqlCommandBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MySql.Data.MySqlClient\MySqlConfiguration.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnectAttrs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnection.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnectionProtocol.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnectionStringBuilder.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnectionStringOption.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlConnectionStringOptionCollection.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlDataAdapter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MySql.Data.MySqlClient\MySqlDataReader.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlDbType.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlDriverType.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlError.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlErrorCode.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlException.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlField.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlHelper.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlInfoMessageEventArgs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlInfoMessageEventHandler.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlPacket.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlParameter.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlParameterCollection.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlParameterConverter.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlPool.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlPoolManager.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlPromotableTransaction.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlRowUpdatedEventArgs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlRowUpdatedEventHandler.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlRowUpdatingEventArgs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlRowUpdatingEventHandler.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlSchemaCollection.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlSchemaRow.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlScript.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlScriptErrorEventArgs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlScriptErrorEventHandler.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlScriptEventArgs.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlSecurityPermission.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlSslMode.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlStatementExecutedEventHandler.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlStream.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlTokenizer.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlTrace.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlTraceEventType.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlTransaction.cs" />
+    <Compile Include="MySql.Data.MySqlClient\MySqlTransactionScope.cs" />
+    <Compile Include="MySql.Data.MySqlClient\NativeDriver.cs" />
+    <Compile Include="MySql.Data.MySqlClient\PerformanceMonitor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\PreparableStatement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ProcedureCache.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ProcedureCacheEntry.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ReplicationConfigurationElement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ReplicationServerConfigurationElement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ReplicationServerGroupConfigurationElement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ResultSet.cs" />
+    <Compile Include="MySql.Data.MySqlClient\SchemaColumn.cs" />
+    <Compile Include="MySql.Data.MySqlClient\SchemaProvider.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ScriptStatement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\ServerStatusFlags.cs" />
+    <Compile Include="MySql.Data.MySqlClient\StandardExceptionInterceptor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\Statement.cs" />
+    <Compile Include="MySql.Data.MySqlClient\StoredProcedure.cs" />
+    <Compile Include="MySql.Data.MySqlClient\StringUtility.cs" />
+    <Compile Include="MySql.Data.MySqlClient\SystemPerformanceMonitor.cs" />
+    <Compile Include="MySql.Data.MySqlClient\TableCache.cs" />
+    <Compile Include="MySql.Data.MySqlClient\TimedStream.cs" />
+    <Compile Include="MySql.Data.MySqlClient\TracingDriver.cs" />
+    <Compile Include="MySql.Data.MySqlClient\UsageAdvisorWarningFlags.cs" />
+    <Compile Include="MySql.Data.Types\IMySqlValue.cs" />
+    <Compile Include="MySql.Data.Types\MetaData.cs" />
+    <Compile Include="MySql.Data.Types\MySqlBinary.cs" />
+    <Compile Include="MySql.Data.Types\MySqlBit.cs" />
+    <Compile Include="MySql.Data.Types\MySqlByte.cs" />
+    <Compile Include="MySql.Data.Types\MySqlConversionException.cs" />
+    <Compile Include="MySql.Data.Types\MySqlDateTime.cs" />
+    <Compile Include="MySql.Data.Types\MySqlDecimal.cs" />
+    <Compile Include="MySql.Data.Types\MySqlDouble.cs" />
+    <Compile Include="MySql.Data.Types\MySqlGeometry.cs" />
+    <Compile Include="MySql.Data.Types\MySqlGuid.cs" />
+    <Compile Include="MySql.Data.Types\MySqlInt16.cs" />
+    <Compile Include="MySql.Data.Types\MySqlInt32.cs" />
+    <Compile Include="MySql.Data.Types\MySqlInt64.cs" />
+    <Compile Include="MySql.Data.Types\MySqlSingle.cs" />
+    <Compile Include="MySql.Data.Types\MySqlString.cs" />
+    <Compile Include="MySql.Data.Types\MySqlTimeSpan.cs" />
+    <Compile Include="MySql.Data.Types\MySqlUByte.cs" />
+    <Compile Include="MySql.Data.Types\MySqlUInt16.cs" />
+    <Compile Include="MySql.Data.Types\MySqlUInt32.cs" />
+    <Compile Include="MySql.Data.Types\MySqlUInt64.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="zlib\Adler32.cs" />
+    <Compile Include="zlib\Deflate.cs" />
+    <Compile Include="zlib\InfBlocks.cs" />
+    <Compile Include="zlib\InfCodes.cs" />
+    <Compile Include="zlib\Inflate.cs" />
+    <Compile Include="zlib\InfTree.cs" />
+    <Compile Include="zlib\StaticTree.cs" />
+    <Compile Include="zlib\SupportClass.cs" />
+    <Compile Include="zlib\Tree.cs" />
+    <Compile Include="zlib\ZInputStream.cs" />
+    <Compile Include="zlib\zlibConst.cs" />
+    <Compile Include="zlib\ZOutputStream.cs" />
+    <Compile Include="zlib\ZStream.cs" />
+    <Compile Include="zlib\ZStreamException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MySql.Data.MySqlClient.Properties\ReservedWords.txt" />
+    <EmbeddedResource Include="MySql.Data.MySqlClient.Properties\Resources.resources" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ConnectorNet.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

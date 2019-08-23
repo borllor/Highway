@@ -1,0 +1,59 @@
+﻿@{
+    var userName = JinRi.Notify.Web.Controllers.BaseController.UserName;
+}
+
+@section Script {
+    <script type="text/javascript">
+        $(function () {
+            $("ul.easyui-tree li a").click(function () {
+                var url = $(this).attr("url");
+                var title = $(this).text();
+                addTab(title, url);
+            }).css({
+                color: "#000",
+                textDecoration: "none"
+            });
+        });
+
+        //添加新的Tab
+        function addTab(title, url) {
+            if ($('#tt').tabs('exists', title)) {
+                $('#tt').tabs('close', title);
+            }
+            $('#tt').tabs('add', {
+                title: title,
+                closable: true,
+                content: '<iframe id="iframe_' + title + '"  scrolling="auto"  frameborder="0"  src="' + url + '" style="width:99%;height:98%;padding:5px;"></iframe>'
+            });
+        }
+
+        //获取当前tab标题
+        function getCurrentTabTitle() {
+            var tab = $('#tt').tabs('getSelected');
+            return tab.panel('options').title
+        }
+    </script>
+}
+<!--  顶部 -->
+<div region="north" split="true" border="false" style="overflow: hidden; height: 36px;
+        background:  #7f99be repeat-x center 50%;
+        line-height: 36px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
+    <span style="float:right; padding-right:20px;">欢迎 @userName &nbsp;&nbsp;<a href="/Account/Logout" id="loginOut">安全退出</a></span>
+</div>
+<!--  导航内容 -->
+<div region="west" hide="true" split="true" title="系统菜单" style="width:180px;">
+    <div id="nav" class="easyui-accordion" border="false" fit="false" data-options="multiple:true">
+        @{ Html.RenderPartial("~/Views/Shared/_Menu.cshtml");}
+    </div>
+</div>
+<!-- 内容 -->
+<div region="center" style="background: #eee;overflow-y:hidden;">
+    <div id="tt" class="easyui-tabs" fit="true" border="false">
+        <div title="首页" style="padding:20px;overflow:hidden; color:red;">
+            欢迎进入系统！
+        </div>
+    </div>
+</div>
+<!--  底部 -->
+<div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
+</div>

@@ -1,0 +1,65 @@
+﻿﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Scripts/jquery-easyui-1.4/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/jquery-easyui-1.4/themes/icon.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-easyui-1.4/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-easyui-1.4/jquery.easyui.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-easyui-1.4/easyui-lang-zh_CN.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Common.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .input {
+            width: 120px;
+            border: 1px solid #95B8E7;
+            height: 18px;
+            line-height: 18px;
+        }
+
+        table.tLine, .tLine td {
+            border: 1px solid #99BBE8;
+            border-collapse: collapse;
+            font-size: 12px;
+            padding: 4px 6px;
+        }
+
+        .tLine .label {
+            background-color: #E6EFFE;
+            font-weight: bold;
+            line-height: 18px;
+        }
+
+    </style>
+    @RenderSection("Style", false)
+</head>
+<body class="easyui-layout" style="overflow-y: hidden;">
+    @RenderBody()
+    @RenderSection("Script", false)
+    <script type="text/javascript">
+        $(function () {
+            if ($("#dg").length > 0) {
+                $("#dg").datagrid("options").onBeforeLoad = function () {
+                    var events = [];
+                    var loginError = function (data) {
+                        if (data.Msg) {
+                            $.messager.alert("系统提示", data.Msg, "info", function () {
+                                window.parent.location = "/Account/Login";
+                            });
+                        }
+                    }
+                    events.push(loginError);
+                    events.push($("#dg").datagrid("options").onLoadSuccess);
+                    $("#dg").datagrid("options").onLoadSuccess = null;
+                    var load = function (data) {
+                        for (var i = 0; i < events.length; i++) {
+                            events[i](data);
+                        }
+                    }
+                    $("#dg").datagrid("options").onLoadSuccess = load;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

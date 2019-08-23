@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "通知接口配置";
+}
+@using JinRi.Notify.Model;
+
+@section Script {
+    <script type="text/javascript">
+        var Setting = {};
+
+        //编辑
+        Setting.edit = function (rowIndex) {
+            var row = $("#dg").datagrid("getRows")[rowIndex];
+            row.MessageType = row.MessageTypeEName;
+            $("#frmAddSetting").form("load", row);
+            //console.log(row);
+            $("#OptType").val("4");
+            $("#SettingId").val(row.SettingId);
+            $("#winAddSetting").show().dialog({ title: "修改配置", top: 50 }).dialog("open");
+        }
+
+        //保存配置
+        Setting.save = function () {
+            $("#frmAddSetting").form("submit", {
+                url: "/NotifyInterfaceSetting/Save",
+                onSubmit: function (param) {
+                    return $(this).form("validate");
+                },
+                success: function (data) {
+                    var r = eval('(' + data + ')');
+                    if (r.Success) {
+                        $.messager.alert("系统提示", "操作成功", "info");
+                        $("#winAddSetting").dialog("close");
+                        $("#dg").datagrid("reload");
+                    } else {
+                        $.messager.alert("系统提示", r.Msg, "info");
+                    }
+                }
+            });
+        }
+        //删除
+        Setting.delete = function (rowIndex) {
+            $.messager.confirm("系统提示", "确认删除?", function (r) {
+                if (r) {
+                    var row = $("#dg").datagrid("getRows")[rowIndex];
+                    $("#OptType").val("3");
+                    $.post("/NotifyInterfaceSetting/Save", { OptType: $("#OptType").val(), SettingId: row.SettingId }, function (r) {
+                        if (r.Success) {
+                            $.messager.alert("系统提示", "操作成功", "info");
+                            $("#winAddSetting").dialog("close");
+                            $("#dg").datagrid("reload");
+                        } else {
+                            $.messager.alert("系统提示", r.Msg, "info");
+                        }
+                    }, "json");
+                }
+            });
+        }
+
+        $(function () {
+
+            $("#btnSearch").click(function () {
+                var searchData = $('#frmSearch').serializeObject();
+                $('#dg').datagrid('load', searchData);
+            });
+
+            $("#dg").datagrid({
+                url: "/NotifyInterfaceSetting/List",
+                rownumbers: true,
+                striped: true,
+                singleSelect: true,
+                loadMsg: '数据加载...',
+                pageList: [20, 30, 50],
+                pageSize: 20,
+                pageNumber: 1,
+                pagination: true,
+                queryParams: $("#frmSearch").serializeObject(),
+                columns: [[
+                    { field: "SettingId", title: "SettingId", align: "center", width: 60 },
+                    { field: "AppId", title: "应用ID", align: "center", width: 80 },
+                    { field: "MessageTypeName", title: "消息类型", align: "center", width: 110 },
+                    { field: "Address", title: "接口地址", align: "center", width: 200 },
+                    { field: "Method", title: "请求类型", align: "center", width: 80 },
+                    { field: "PushLimitCount", title: "推送阈值", align: "center", width: 80 },
+                    { field: "PushInternalRule", title: "失败推送规则", align: "center", width: 120 },
+                    { field: "Encoding", title: "编码方式", align: "center", width: 80 },
+                    { field: "CreateTime", title: "创建时间", align: "center", width: 150 },
+                    {
+                        field: "Status", title: "状态", align: "center", width: 120, formatter: function (value) {
+                            switch (value) {
+                                case 2:
+                                    return "正常";
+                                default:
+                                    return "无效";
+                            }
+                        }
+                    },
+                    {
+                        field: "opt", title: "操作", align: "center", width: 120, formatter: function (value, row, index) {
+                            var a = '<a href="javascript:void(0);" onclick="Setting.edit(' + index + ')">编辑</a>&nbsp;';
+                            var b = '<a href="javascript:void(0);" onclick="Setting.delete(' + index + ')">删除</a>';
+                            if (row.Status == 2) {
+                                return a + b;
+                            }
+                            return "";
+                        }
+                    }
+                ]]
+            });
+
+            //新增配置
+            $("#addSetting").click(function () {
+                $("#frmAddSetting").form("clear");
+                $("#OptType").val("2");
+                $("#winAddSetting").show().dialog({ title: "新增配置", top: 50 }).dialog("open");
+            });
+
+            //新增配置保存
+            $("#btnOK").click(Setting.save);
+
+        });
+
+    </script>    
+}
+
+<div id="tb">
+    <form name="frmSearch" method="post" id="frmSearch">
+        <table style="width:100%;" class="tLine">
+            <tr>
+                <td colspan="4">
+                    SettingId：<input type="text" name="SettingId" class="input" value="@ViewBag.SettingId" style="width:100px;" />
+                    应用ID：<input type="text" name="AppId" class="input" value="" style="width:100px;" />
+        消息类型：<select name="MessageType" class="easyui-combobox input">
+                        <option value="">--请选择--</option>
+                        @foreach (var item in ViewBag.NotifyMessageTypeList as List<NotifyMessageTypeModel>)
+                        {
+                            <option value="@item.MessageType">@item.Remark</option>
+                        }
+                    </select>
+                    <a class="easyui-linkbutton" iconcls="icon-search" id="btnSearch" plain="true">查询</a>
+                    <a class="easyui-linkbutton" iconcls="icon-add" id="addSetting" plain="true">添加</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<table id="dg" toolbar="#tb"></table>
+<!--配置新增-->
+<div id="winAddSetting" style="width: 620px; height: auto; text-align: left; display: none; padding: 2px;"
+     class="easyui-window" modal="true" closed="true" minimizable="false" collapsible="false" maximizable="false">
+    <form id="frmAddSetting" action="" method="post">
+        <input type="hidden" id="OptType" name="OptType" value="2">
+        <input type="hidden" id="SettingId" name="SettingId" value="0">
+        <table class="tLine" style="width:100%">
+            <tr>
+                <td class="label">应用ID：</td>
+                <td><input type="text" name="AppId" class="easyui-validatebox input" data-options="required:true" /></td>
+                <td class="label">消息类型：</td>
+                <td>
+                    <select id="MessageType" name="MessageType" class="easyui-combobox input" data-options="required:true,editable:false">
+                        @foreach (var item in ViewBag.NotifyMessageTypeList as List<NotifyMessageTypeModel>)
+                        {
+                            <option value="@item.MessageType">@item.Remark</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">接口地址：</td>
+                <td><input type="text" name="Address" class="easyui-validatebox input" data-options="required:true" /></td>
+                <td class="label">方法：</td>
+                <td>
+                    <select id="Method" name="Method" class="easyui-combobox input" data-options="required:true,editable:false">
+                        <option>GET</option>
+                        <option>POST</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">推送次数阈值：</td>
+                <td><input type="text" name="PushLimitCount" class="easyui-validatebox input" data-options="required:true" /></td>
+                <td class="label">失败推送规则：</td>
+                <td>
+                    <input type="text" name="PushInternalRule" class="easyui-validatebox input" data-options="required:true" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">编码方式：</td>
+                <td>
+                    <select id="Encoding" name="Encoding" class="easyui-combobox input" data-options="required:true,editable:false">
+                        <option>GB2312</option>
+                        <option>UTF-8</option>
+                        <option>GBK</option>
+                    </select>
+                </td>
+                <td class="label"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right" style="text-align: right; margin-right: 10px">
+                    <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-save" plain="true" id="btnOK">确定</a>
+                    <a href="javascript:void(0);" class="easyui-linkbutton" id="btnClose" iconcls="icon-cancel" plain="true" onclick="$('#winAddSetting').dialog('close');">取消</a>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+
+

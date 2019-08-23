@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="17e8adc9-ee06-4132-8856-01588e3b7e94" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.6.125:8040/DirectReceiveService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DirectReceiveService.xsd" MetadataType="Schema" ID="6e2689ef-7116-4484-9f75-57ad6a2a9766" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DirectReceiveService1.xsd" MetadataType="Schema" ID="3fad9cea-e0ac-4c84-a474-98ed375de396" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DirectReceiveService.wsdl" MetadataType="Wsdl" ID="031c0bc8-1f81-4004-869c-976990e5fb54" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?wsdl" />
+    <MetadataFile FileName="DirectReceiveService2.xsd" MetadataType="Schema" ID="72ea1a0a-6f78-4e70-8a99-5be27e05abf2" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DirectReceiveService3.xsd" MetadataType="Schema" ID="30c75706-b1e2-4cf0-8c9a-72e713be6fdb" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?xsd=xsd3" />
+    <MetadataFile FileName="DirectReceiveService.disco" MetadataType="Disco" ID="6429ee32-bfbb-4e80-8aef-a96508e47ae6" SourceId="1" SourceUrl="http://192.168.6.125:8040/DirectReceiveService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

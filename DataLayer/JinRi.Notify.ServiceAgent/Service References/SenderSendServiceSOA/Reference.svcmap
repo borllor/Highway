@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8d3070a2-fb6c-4e66-b2bf-0f1bb889c239" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.5.149:8030/SendService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SendService.xsd" MetadataType="Schema" ID="722175d4-ddb7-4bc6-aa3b-2e83efe0095e" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SendService1.xsd" MetadataType="Schema" ID="117df246-8679-4c60-b21c-60634ab698ff" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SendService.disco" MetadataType="Disco" ID="83bb3dc2-497f-469b-b4ab-07de4200ff8c" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?disco" />
+    <MetadataFile FileName="SendService2.xsd" MetadataType="Schema" ID="45d81847-4f91-4292-a0f7-4dd4a0b3b448" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SendService3.xsd" MetadataType="Schema" ID="15922896-1045-409f-a1e5-5474287ac73d" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?xsd=xsd3" />
+    <MetadataFile FileName="SendService.wsdl" MetadataType="Wsdl" ID="df6eb19f-dc95-497d-bf08-179826cfb461" SourceId="1" SourceUrl="http://192.168.5.149:8030/SendService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

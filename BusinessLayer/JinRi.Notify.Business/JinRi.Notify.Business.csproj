@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1344941C-F3A1-490E-9AE2-FDF4E458950B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JinRi.Notify.Business</RootNamespace>
+    <AssemblyName>JinRi.Notify.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Metrics, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Metrics.1.0.8\lib\Metrics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\packages\Metrics.1.0.8\lib\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\DifferentShowBusiness.cs" />
+    <Compile Include="Common\InstructionServiceBusiness.cs" />
+    <Compile Include="Common\NotifySettingBusiness.cs" />
+    <Compile Include="Common\ConfigCenterBusiness.cs" />
+    <Compile Include="Common\ComputePushTimeBusiness.cs" />
+    <Compile Include="Common\DistributedCache.cs" />
+    <Compile Include="Common\Log.cs" />
+    <Compile Include="Common\PushMessageBusiness.cs" />
+    <Compile Include="Service\SystemHeatService.cs" />
+    <Compile Include="Common\WebConfigBusiness.cs" />
+    <Compile Include="Core\RedoMessageBusiness.cs" />
+    <Compile Include="Core\ScanMessageBusiness.cs" />
+    <Compile Include="Core\SendMessageBusiness.cs" />
+    <Compile Include="Core\ParallelSubscribeBusiness.cs" />
+    <Compile Include="Common\InterfaceSettingBusiness.cs" />
+    <Compile Include="Common\NotifyMessageBusiness.cs" />
+    <Compile Include="Core\BuildMessageBusiness.cs" />
+    <Compile Include="Core\ReceiveMessageBusiness.cs" />
+    <Compile Include="Common\RabbitMQBusiness.cs" />
+    <Compile Include="Facade\ScanFacade.cs" />
+    <Compile Include="Facade\SendFacade.cs" />
+    <Compile Include="Facade\RedoFacade.cs" />
+    <Compile Include="Facade\BuildFacade.cs" />
+    <Compile Include="Facade\ReceiveFacade.cs" />
+    <Compile Include="Helper\DelegateHelper.cs" />
+    <Compile Include="Manager\RabbitMQBus.cs" />
+    <Compile Include="Manager\RabbitMQBusMgr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\APILayer\EasyNetQ\EasyNetQ.csproj">
+      <Project>{b8def709-5168-48f1-b8d3-ad44e4a4a22b}</Project>
+      <Name>EasyNetQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
+      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
+      <Name>Newtonsoft.Json.Net40</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLayer\JinRi.Notify.Utility\JinRi.Notify.Utility.csproj">
+      <Project>{f3ee215a-2351-4fc7-a8cc-1159211740e9}</Project>
+      <Name>JinRi.Notify.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLayer\JinRi.Notify.DB\JinRi.Notify.DB.csproj">
+      <Project>{afe1bbb5-34b0-485a-a77f-b26ea0793e65}</Project>
+      <Name>JinRi.Notify.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataLayer\JinRi.Notify.ServiceAgent\JinRi.Notify.ServiceAgent.csproj">
+      <Project>{dcffb632-bc7c-4757-b078-5a15ae88fe1b}</Project>
+      <Name>JinRi.Notify.ServiceAgent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.DTO\JinRi.Notify.DTO.csproj">
+      <Project>{4c14cc1f-b1eb-4f62-bde2-089e144c95ae}</Project>
+      <Name>JinRi.Notify.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.Entity\JinRi.Notify.Entity.csproj">
+      <Project>{2c23c782-94c1-409b-8fb1-b61f3730f95f}</Project>
+      <Name>JinRi.Notify.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.Model\JinRi.Notify.Model.csproj">
+      <Project>{0f457a6d-f6a5-4543-b019-a18cdd79673e}</Project>
+      <Name>JinRi.Notify.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\EntityLayer\JinRi.Notify.ServiceModel\JinRi.Notify.ServiceModel.csproj">
+      <Project>{7396079d-a1ca-44e3-8d18-aa0bc52c43f1}</Project>
+      <Name>JinRi.Notify.ServiceModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLayer\JinRi.Notify.Frame\JinRi.Notify.Frame.csproj">
+      <Project>{90D6C981-E555-49C5-96FF-39CFD32316A8}</Project>
+      <Name>JinRi.Notify.Frame</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
