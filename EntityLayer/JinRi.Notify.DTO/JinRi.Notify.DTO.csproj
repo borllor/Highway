@@ -57,10 +57,6 @@
     <Compile Include="PushMessage\PushMessage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JinRi.Notify.Model\JinRi.Notify.Model.csproj">
       <Project>{0f457a6d-f6a5-4543-b019-a18cdd79673e}</Project>
       <Name>JinRi.Notify.Model</Name>

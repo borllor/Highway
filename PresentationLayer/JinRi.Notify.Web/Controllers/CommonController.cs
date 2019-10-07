@@ -20,22 +20,6 @@ namespace JinRi.Notify.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public ActionResult ExecSql(string content)
-        //{
-        //    var message = new ReturnMessage { Success = false, Msg = "操作失败!" };
-        //    try
-        //    {
-        //        NotifySettingBusiness bus = new NotifySettingBusiness();
-        //        message.Success = bus.ExecSqlCommand(content);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        message.Msg = ex.ToString();
-        //    }
-        //    return Content(JsonConvert.SerializeObject(message));
-        //}
-
         [HttpPost]
         public ActionResult GetDataByExecSql(string content)
         {

@@ -21,7 +21,8 @@ namespace JinRi.Notify.Business
         /// <returns></returns>
         public WebConfigEntity GetWebConfigBySettingKey(string settingKey)
         {
-            return JinRiDBFacade.Instance.GetWebConfigBySettingKey(settingKey);
+            // TODO
+            return null;
         }
 
         #region   string 类型相关方法
@@ -33,13 +34,8 @@ namespace JinRi.Notify.Business
         /// <returns></returns>
         private string GetValue(string settingKey, string defaultValue)
         {
-            string result = defaultValue;
-            WebConfigEntity setting = JinRiDBFacade.Instance.GetWebConfigBySettingKey(settingKey);
-            if (setting != null)
-            {
-                result = setting.SettingValue;
-            }
-            return result;
+            // TODO
+            return null;
         }
 
         /// <summary>
@@ -94,16 +90,8 @@ namespace JinRi.Notify.Business
         /// <returns></returns>
         private int GetValue(string settingKey, int defaultValue)
         {
-            int result = defaultValue;
-            WebConfigEntity setting = JinRiDBFacade.Instance.GetWebConfigBySettingKey(settingKey);
-            if (setting != null)
-            {
-                if (!int.TryParse(setting.SettingValue, out result))
-                {
-                    result = defaultValue;
-                }
-            }
-            return result;
+            // TODO
+            return 0;
         }
 
         /// <summary>
@@ -158,16 +146,8 @@ namespace JinRi.Notify.Business
         /// </summary>
         private bool GetValue(string settingKey, bool defaultValue)
         {
-            bool result = defaultValue;
-            WebConfigEntity setting = JinRiDBFacade.Instance.GetWebConfigBySettingKey(settingKey);
-            if (setting != null)
-            {
-                if (!bool.TryParse(setting.SettingValue, out result))
-                {
-                    result = defaultValue;
-                }
-            }
-            return result;
+            // TODO
+            return false;
         }
 
         /// <summary>

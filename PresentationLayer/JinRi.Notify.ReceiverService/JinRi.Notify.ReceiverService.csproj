@@ -63,11 +63,15 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="ReceiveService.svc" />
     <Content Include="Web.config" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -83,14 +87,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APILayer\MySql.Data\MySql.Data.csproj">
-      <Project>{47266636-a5cd-481a-a6d5-0ce5065a3385}</Project>
-      <Name>MySql.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\BusinessLayer\JinRi.Notify.Business\JinRi.Notify.Business.csproj">
       <Project>{1344941c-f3a1-490e-9ae2-fdf4e458950b}</Project>
       <Name>JinRi.Notify.Business</Name>

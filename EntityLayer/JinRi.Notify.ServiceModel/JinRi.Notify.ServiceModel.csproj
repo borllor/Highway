@@ -44,6 +44,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Condition\DifferentShowCondition.cs" />
@@ -75,10 +78,6 @@
     <Compile Include="Setting\SiteSetting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APILayer\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\CommonLayer\JinRi.Notify.Utility\JinRi.Notify.Utility.csproj">
       <Project>{f3ee215a-2351-4fc7-a8cc-1159211740e9}</Project>
       <Name>JinRi.Notify.Utility</Name>
@@ -91,6 +90,9 @@
       <Project>{90D6C981-E555-49C5-96FF-39CFD32316A8}</Project>
       <Name>JinRi.Notify.Frame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

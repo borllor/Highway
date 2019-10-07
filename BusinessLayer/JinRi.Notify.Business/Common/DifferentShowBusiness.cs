@@ -112,7 +112,8 @@ namespace JinRi.Notify.Business.Common
         }
         private DateTime getSqlDBTime()
         {
-           return JinRiDBFacade.Instance.GetDateTimeNow();
+            // TODO
+            return DateTime.Now;
         }
         private DateTime getMySqlDBTime()
         {
@@ -173,11 +174,7 @@ namespace JinRi.Notify.Business.Common
         #region 查询订单列表
         public List<NotifyOrderModel> QueryOrdersList(ScanOrderCondition condition)
         {
-            //return new List<NotifyOrderModel>{
-            //  new NotifyOrderModel(){ OrderNo="w01", OrderStatus="1", OutTime="2015-02-01 11:00:01", ProviderID=12, ProxyerID=20, SalesmanID=123},
-            //  new NotifyOrderModel(){ OrderNo="w02", OrderStatus="2", OutTime="2016-02-01 09:00:01", ProviderID=112, ProxyerID=210, SalesmanID=1234}
-            //};
-            List<NotifyOrderEntity> list = JinRiDBFacade.Instance.QueryOrdersList(condition);
+            List<NotifyOrderEntity> list = null;
             List<NotifyOrderModel> modList = new List<NotifyOrderModel>();
             list.ForEach(x => modList.Add(MappingHelper.From<NotifyOrderModel, NotifyOrderEntity>(x)));
             return modList;

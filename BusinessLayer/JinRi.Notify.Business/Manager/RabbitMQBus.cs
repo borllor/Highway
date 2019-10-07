@@ -40,7 +40,7 @@ namespace JinRi.Notify.Business
             {
                 string mqHost = ConfigurationAppSetting.RabbitMQHost;
                 Check.IsNullOrEmpty(mqHost, "RabbitMQHost");
-                _bus = RabbitHutch.CreateBus(mqHost, reg => reg.Register<IEasyNetQLogger>(log => new Log4NetLogger())).Advanced;
+                _bus = RabbitHutch.CreateBus(mqHost).Advanced;
                 Check.IsNull(_bus, "执行RabbitHutch.CreateBus后，IAdvancedBus");
             }
         }

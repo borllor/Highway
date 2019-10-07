@@ -113,10 +113,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\APILayer\MySql.Data\MySql.Data.csproj">
-      <Project>{47266636-a5cd-481a-a6d5-0ce5065a3385}</Project>
-      <Name>MySql.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\BusinessLayer\JinRi.Notify.Business\JinRi.Notify.Business.csproj">
       <Project>{1344941c-f3a1-490e-9ae2-fdf4e458950b}</Project>
       <Name>JinRi.Notify.Business</Name>

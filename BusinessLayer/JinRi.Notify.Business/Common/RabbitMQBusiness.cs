@@ -59,7 +59,7 @@ namespace JinRi.Notify.Business
                     MessageId = message.MessageId,
                     Type = "S"
                 };
-                rabbitMQ.Bus.Publish(ExchangeDic[topic], "", false, false, prop, body);
+                rabbitMQ.Bus.OpenPublishChannel().Publish(ExchangeDic[topic], "", prop, body);
                 MetricsKeys.RabbitMQ_Publish.MeterMark("Success");
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace JinRi.Notify.Business
                     MessageId = messageList[0].MessageId,
                     Type = "M"
                 };
-                rabbitMQ.Bus.Publish(ExchangeDic[topic], "", false, false, prop, body);
+                rabbitMQ.Bus.OpenPublishChannel().Publish(ExchangeDic[topic], "", prop, body);
                 MetricsKeys.RabbitMQ_Publish.MeterMark("Success");
             }
             catch (Exception ex)
@@ -119,7 +119,7 @@ namespace JinRi.Notify.Business
             try
             {
                 string topic = priority.ToString().ToUpper();
-                rabbitMQ.Bus.Consume(QueueDic[topic], (body, props, info) => Task.Factory.StartNew(() =>
+                rabbitMQ.Bus.Subscribe(QueueDic[topic], (body, props, info) => Task.Factory.StartNew(() =>
                 {
                     MetricsKeys.RabbitMQ_Subscribe.MeterMark("Success");
                     if (DataCache.Add(props.MessageId, 1, DateTime.Now.AddMinutes(10)))
@@ -159,7 +159,7 @@ namespace JinRi.Notify.Business
                         RepeatMessageDic[props.MessageId] = RepeatMessageDic[props.MessageId] + 1;
                         ComsumeMessage(props.MessageId, RepeatMessageDic[props.MessageId]);
                     }
-                }), x => { x.WithPrefetchCount(50); });
+                }));
             }
             catch (Exception ex)
             {
@@ -184,9 +184,10 @@ namespace JinRi.Notify.Business
                 if (e != MessagePriorityEnum.None)
                 {
                     string s = e.ToString().ToUpper();
-                    queue = rabbitMQ.Bus.QueueDeclare(string.Format(queueFormat, s), false, true, false, false, null, null, null, null, null, null, null);
-                    exchange = rabbitMQ.Bus.ExchangeDeclare(string.Format(exchangeFormat, s), ExchangeType.Topic);
-                    binding = rabbitMQ.Bus.Bind(exchange, queue, "");
+
+                    //queue = rabbitMQ.Bus.QueueDeclare(string.Format(queueFormat, s), false, true, false, false, null, null, null, null, null, null, null);
+                    //exchange = rabbitMQ.Bus.ExchangeDeclare(string.Format(exchangeFormat, s), ExchangeType.Topic);
+                    //binding = rabbitMQ.Bus.Bind(exchange, queue, "");
                     QueueDic.Add(s, queue);
                     ExchangeDic.Add(s, exchange);
                     BindingDic.Add(s, binding);

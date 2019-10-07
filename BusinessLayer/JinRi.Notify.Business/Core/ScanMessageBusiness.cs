@@ -187,7 +187,8 @@ namespace JinRi.Notify.Business.Core
         {
             try
             {
-                return JinRiDBFacade.Instance.GetDateTimeNow();
+                // TODO
+                return DateTime.Now;
             }
             catch (Exception ex)
             {
@@ -198,11 +199,13 @@ namespace JinRi.Notify.Business.Core
 
         private List<NotifyOrderEntity> GetOrdersList(ScanOrderCondition condition)
         {
-            return JinRiDBQuery.Instance.GetOrdersList(condition);
+            // TODO
+            return null;
         }
         private List<NotifyOrderEntity> GetOrdersListBuSao(ScanOrderCondition condition)
         {
-            return JinRiDBQuery.Instance.GetOrdersListBuSao(condition);
+            // TODO
+            return null;
         }
 
         private static object m_repeatNotifyTimesLockObj = new object();
